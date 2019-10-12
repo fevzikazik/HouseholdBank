@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Banka" EntityType="dbBankModel.Banka" />
+    <EntitySet Name="Islem" EntityType="dbBankModel.Islem" />
+    <EntitySet Name="Musteri" EntityType="dbBankModel.Musteri" />
+    <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
+  </EntityContainer>
+  <EntityType Name="Banka">
+    <Key>
+      <PropertyRef Name="bankaID" />
+    </Key>
+    <Property Name="bankaID" Type="Int32" Nullable="false" />
+    <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="slogan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Islem">
+    <Key>
+      <PropertyRef Name="islemID" />
+    </Key>
+    <Property Name="islemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hesapNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="tarih" Type="DateTime" Precision="3" />
+    <Property Name="islemTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="tcKimlikNo" />
+    </Key>
+    <Property Name="tcKimlikNo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="tamAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="hesapNo" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Hesap">
+    <Key>
+      <PropertyRef Name="hesapID" />
+    </Key>
+    <Property Name="hesapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="aktifmi" Type="Boolean" />
+    <Property Name="acilisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="bakiye" Type="Int32" />
+  </EntityType>
+</Schema>

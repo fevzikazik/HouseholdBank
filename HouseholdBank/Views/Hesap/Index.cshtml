@@ -1,0 +1,47 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Hesap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+    int toplamBakiye = 0;
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
+
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+
+    <div class="row">
+        <div class="col-md-6 col-lg-5 ml-auto d-flex ac mt-4 mt-md-0">
+            <div>
+                <h2>Aktif Hesaplarım</h2>
+                <p class="margin-top-s">
+                    <div class="list-group">
+                        @foreach (Hesap hesap in hesapList)
+                        {
+                            <a href="@Url.Action("Detay","Hesap", new { id = hesap.hesapEkNo})" class="list-group-item list-group-item-action list-group-item-primary">
+                                Hesap No: @mus.hesapNo - @hesap.hesapEkNo <br />Bakiyesi: @hesap.bakiye
+                            </a>
+                            <br />
+                        }
+
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 ml-auto d-flex ac mt-4 mt-md-0">
+            <div>
+                <h2>Hesap İşlemleri</h2>
+                <p class="margin-top-s">
+                    <div class="vertical-menu">
+                        <a href="@Url.Action("YeniHesap","Hesap")">Yeni Hesap Aç</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

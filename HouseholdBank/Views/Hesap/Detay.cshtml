@@ -1,0 +1,142 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "HesapDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+    Hesap secilenHesap = (Hesap)ViewBag.hesap;
+
+    DateTime ucAyOnce = DateTime.Now.AddMonths(-3);
+    List<Islem> islemler = db.Islem.Where(isl => isl.hesapNo == mus.hesapNo && isl.hesapEkNo == secilenHesap.hesapEkNo && isl.tarih >= ucAyOnce).ToList();
+    islemler.Reverse();
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;max-width:450px;padding:3em;">
+
+
+    <div class="row justify-content-center">
+        <div>
+            <br />
+            <h2>Hesap Detayları:</h2>
+            <h3> @mus.hesapNo : @secilenHesap.hesapEkNo</h3>
+            <p class="margin-top-s">
+                Bakiye : @secilenHesap.bakiye
+                <br />
+                Açılış Tarihi: @secilenHesap.acilisTarihi.Value.ToString()
+                <br />
+                Aktiflik Durumu:  @secilenHesap.aktifmi
+            </p>
+            <p>
+                <button class="btn btn-success" data-toggle="modal" data-target="#ParaYatir">Para Yatır</button>
+                @if (secilenHesap.bakiye>0)
+                {
+                    <button class="btn btn-info" data-toggle="modal" data-target="#ParaCek">Para Çek</button>
+                }
+                <a href="@Url.Action("HesapKapat","Hesap", new { id = secilenHesap.hesapEkNo})">
+                    <button class="btn btn-danger">Hesapı Kapat</button>
+                </a>
+            </p>
+            <br />
+            <h2>Hesap Hareketleri(Son 3 Ay):</h2>
+            <p>
+                @if (islemler.Count == 0)
+                {
+                <p>Bu hesapla ilgili işlem bulunamamıştır.</p>
+            }
+            else
+            {
+                <div class="list-group">
+                    @foreach (Islem islem in islemler)
+                    {
+                        <p class="list-group-item list-group-item-action list-group-item-primary">
+                            IslemID: @islem.islemID <br /> Tarihi: @islem.tarih <br /> Tipi: @islem.islemTipi <br /> Açıklaması: @islem.aciklama
+                        </p>
+                        <br />
+                    }
+                </div>
+            }
+                </p>
+                <br />
+            </div>
+        </div>
+
+    </div>
+
+<div class="modal fade" id="ParaYatir" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Para Yatır - Mevcut Bakiye: @secilenHesap.bakiye</h4>
+            </div>
+            @using (Html.BeginForm("ParaYatir", "Hesap", new { @id = secilenHesap.hesapEkNo }, FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Yatırılacak Miktarı Girin(Max 9 Hane):</label>
+                        <input type="text" id="miktar" name="miktar" maxlength="9" class="form-control" />
+                        <label>Açıklama(Maks. 150 karakter):</label>
+                        <input type="text" id="aciklama" name="aciklama" maxlength="150" class="form-control" required title="Lütfen Açıklama Girin!" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-success">Para Yatır!</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ParaCek" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Para Çek - Mevcut Bakiye: <span id="mevcutBakiye">@secilenHesap.bakiye</span></h4>
+            </div>
+            @using (Html.BeginForm("ParaCek", "Hesap", new { @id = secilenHesap.hesapEkNo }, FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Çekilecek Miktarı Girin:</label>
+                        <input type="text" id="miktarCek" name="miktar" class="form-control" />
+                        <span id="bakiyeUyari"></span>
+                        <label>Açıklama(Maks. 150 karakter):</label>
+                        <input type="text" id="aciklama" name="aciklama" maxlength="150" class="form-control" required title="Lütfen Açıklama Girin!"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" id="paraCekBtn" class="btn btn-success">Para Çek!</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#miktarCek').keydown(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            var max = parseInt($("#mevcutBakiye").text());
+            var min = 0
+            if ($(this).val() > max) {
+                $(this).val(max);
+            }else if ($(this).val() <= 0) {
+                $(this).val(1);
+            }
+        });
+
+        $('#miktarCek').keyup(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            var max = parseInt($("#mevcutBakiye").text());
+            var min = 0
+            if ($(this).val() > max) {
+                $(this).val(max);
+            } else if ($(this).val() <= 0) {
+                $(this).val(1);
+            }
+        });
+    });
+
+</script>

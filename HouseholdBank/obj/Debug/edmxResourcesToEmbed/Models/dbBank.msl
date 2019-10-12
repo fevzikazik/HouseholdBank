@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbBankModelStoreContainer" CdmEntityContainer="dbBankEntities">
+    <EntitySetMapping Name="Banka">
+      <EntityTypeMapping TypeName="dbBankModel.Banka">
+        <MappingFragment StoreEntitySet="Banka">
+          <ScalarProperty Name="il" ColumnName="il" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="slogan" ColumnName="slogan" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+          <ScalarProperty Name="bankaID" ColumnName="bankaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Islem">
+      <EntityTypeMapping TypeName="dbBankModel.Islem">
+        <MappingFragment StoreEntitySet="Islem">
+          <ScalarProperty Name="islemTipi" ColumnName="islemTipi" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
+          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+          <ScalarProperty Name="islemID" ColumnName="islemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="dbBankModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+          <ScalarProperty Name="tamAdi" ColumnName="tamAdi" />
+          <ScalarProperty Name="tcKimlikNo" ColumnName="tcKimlikNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hesap">
+      <EntityTypeMapping TypeName="dbBankModel.Hesap">
+        <MappingFragment StoreEntitySet="Hesap">
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="kapanisTarihi" ColumnName="kapanisTarihi" />
+          <ScalarProperty Name="acilisTarihi" ColumnName="acilisTarihi" />
+          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
+          <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

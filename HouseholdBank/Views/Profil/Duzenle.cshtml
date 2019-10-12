@@ -1,0 +1,74 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Profil Duzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri gelenMus = (Musteri)Session["mus"];
+}
+
+<script>
+    var check = function () {
+        if (document.getElementById('sifre').value ==
+            document.getElementById('sifretekrar').value) {
+            document.getElementById('eslesme').style.color = 'green';
+            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşti!';
+            document.getElementById('btnGuncelle').disabled = false;
+        } else {
+            document.getElementById('eslesme').style.color = 'red';
+            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşmiyor!';
+            document.getElementById('btnGuncelle').disabled = true;
+        }
+    }
+</script>
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <form action="/Profil/Duzenle" method="post">
+                    <div class="container">
+                        <h1>Kaydolun</h1>
+                        <p>Kayıt olmak için lütfen aşağıdaki bilgileri doldurun.</p>
+                        <hr>
+                        <label for="tcKimlikNo"><b>TCKN</b></label>
+                        <input type="text" value="@gelenMus.tcKimlikNo" name="tcKimlikNo" readonly="readonly">
+
+                        <label for="tamAdi"><b>Ad Soyad</b></label>
+                        <input type="text" value="@gelenMus.tamAdi" name="tamAdi" maxlength="50" required>
+
+                        <label for="sifre"><b>Şifre</b></label>
+                        <input type="text" value="@gelenMus.sifre" onkeyup="check();" id="sifre" name="sifre" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
+                        <span id='eslesme'></span><br />
+                        <label for="sifretekrar"><b>Şifre Tekrar</b></label>
+                        <input type="text" value="@gelenMus.sifre" onkeyup="check();" id="sifretekrar" name="sifretekrar" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
+
+                        <label for="telefon"><b>Telefon</b></label>
+                        <input type="text" value="@gelenMus.telefon" id="telefon" name="telefon" maxlength="20" required>
+
+                        <label for="ePosta"><b>Email</b></label>
+                        <input type="text" value="@gelenMus.ePosta" name="ePosta" maxlength="50" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required title="Lütfen geçerli bir email girin!">
+
+                        <label for="dogumTarihi"><b>Doğum Tarihi</b></label>
+                        <input type="date" min="1919-01-01" max="2001-01-01" name="dogumTarihi" value="@gelenMus.dogumTarihi.Value.Date.ToString("yyyy-MM-dd")" required>
+
+                        <label for="adres"><b>Adres</b></label>
+                        <input type="text" value="@gelenMus.adres" name="adres" maxlength="150" required>
+
+                        <div class="clearfix">
+                            <button type="submit" id="btnGuncelle" class="signup">Bilgilerimi Guncelle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 ml-auto d-flex align-items-center mt-4 mt-md-0">
+            <div>
+                <h2>Profilinizi Düzenleyin...</h2>
+                <p class="margin-top-s"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
