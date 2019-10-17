@@ -1,0 +1,108 @@
+﻿@using HouseholdBank.Models;
+@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Havale Alan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+
+
+    string gonderenHesapEkNo = ViewBag.gonderenHesapEkNo;
+
+    Musteri gonderenMus = db.Musteri.Where(m => m.hesapNo == mus.hesapNo).Single();
+
+    Hesap gonderenH = db.Hesap.Where(h => h.hesapEkNo == gonderenHesapEkNo && gonderenMus.tcKimlikNo == h.musTCKN).Single();
+
+
+}
+
+
+<script>
+    $(function () {
+        $('#aliciHesapEkNo').keyup(function (e) {
+            var hspNo = $('#aliciHesapNo').val();
+            var hspEkNo = $('#aliciHesapEkNo').val();
+            if (hspEkNo.length==4) {
+                $.ajax({
+                url: "@Url.Action("AlanHesapKontrol", "Hesap")",
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                data: {
+                    hesapNo: hspNo,
+                    hesapEkNo: hspEkNo
+                },
+                    success: function (response) {
+                        if (response.responseText == "var") {
+                            document.getElementById('btnDevam').disabled = false;
+                            $("#aliciAdi").val(response.musteri);
+                        }
+                        else {
+                            document.getElementById('btnDevam').disabled = true;
+                            alert("Girilen Hesap Bulunamadı! Lütfen Geçerli Bir Alıcı Hesabı Girin!");
+                        }
+                    },
+                    error: function (response) {
+                        alert("error!");
+                    }
+            });
+            }
+            else {
+                document.getElementById('btnDevam').disabled = false;
+                $("#aliciAdi").val("");
+            }
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $('#aliciHesapNo').keydown(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        $('#aliciHesapNo').keyup(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        $('#aliciHesapEkNo').keydown(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        $('#aliciHesapEkNo').keyup(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+
+</script>
+
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Havale", "Hesap", FormMethod.Post))
+            {
+                @Html.Hidden("gonderenHesapEkNo", gonderenHesapEkNo)
+                <br />
+                <h2>Alici Hesap No:</h2>
+                <div class="form-group">
+                    <input id="aliciHesapNo" type="text" name="aliciHesapNo" maxlength="9" required="required" placeholder="Alıcı Hesap No Girin" autocomplete="off" class="form-control">
+                </div>
+                <br />
+                <h2>Alici Hesap Ek No:</h2>
+                <div class="form-group">
+                    <input id="aliciHesapEkNo" type="text" name="aliciHesapEkNo" maxlength="4" required="required" placeholder="Alıcı Hesap Ek No Girin" autocomplete="off" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input id="aliciAdi" type="text" name="aliciAdi" placeholder="Alici Bilgisi" readonly="readonly" required="required" autocomplete="off" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success" id="btnDevam">Devam Et</button>
+                <br />
+            }
+        </div>
+    </div>
+
+</div>

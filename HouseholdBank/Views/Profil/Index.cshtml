@@ -32,6 +32,7 @@
                     <hr />
                     <p class="title">Dogum Tarihi: @mus.dogumTarihi.Value.Date.ToString("dd/MM/yyyy")</p>
                     <p class="title">Tel: @mus.telefon</p>
+                    <p class="title">Eposta: @mus.ePosta</p>
                     <p class="title">Adres: @mus.adres</p>
                     <p><a href="/Profil/Duzenle"><button>Düzenle</button></a></p>
                 </div>
@@ -43,10 +44,9 @@
                 <p class="margin-top-s">
                     <div class="vertical-menu">
                         <a href="@Url.Action("Index","Hesap")">Hesaplarım</a>
-                        <a href="#">Para Transferi(Havale)</a>
-                        <a href="#">Para Transferi(Virman)</a>
+                        <a href="@Url.Action("HavaleGonderen","Hesap")">Para Transferi(Havale)</a>
+                        <a href="@Url.Action("VirmanGonderen","Hesap")">Para Transferi(Virman)</a>
                         <a href="#">HGS İşlemleri</a>
-                        <a href="#">Kredi İşlemleri</a>
                     </div>
                 </p>
             </div>

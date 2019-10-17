@@ -256,8 +256,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
@@ -267,7 +265,14 @@
     <Content Include="Views\Profil\Index.cshtml" />
     <Content Include="Views\Profil\Duzenle.cshtml" />
     <Content Include="Views\Hesap\Detay.cshtml" />
-    <Content Include="Views\Hesap\ParaYatir.cshtml" />
+    <Content Include="Views\Hesap\VirmanGonderen.cshtml" />
+    <Content Include="Views\Hesap\VirmanAlan.cshtml" />
+    <Content Include="Views\Hesap\Virman.cshtml" />
+    <Content Include="Views\Hesap\VirmanKontrol.cshtml" />
+    <Content Include="Views\Hesap\HavaleKontrol.cshtml" />
+    <Content Include="Views\Hesap\Havale.cshtml" />
+    <Content Include="Views\Hesap\HavaleAlan.cshtml" />
+    <Content Include="Views\Hesap\HavaleGonderen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

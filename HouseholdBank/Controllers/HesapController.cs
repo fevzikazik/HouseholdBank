@@ -155,5 +155,195 @@ namespace HouseholdBank.Controllers
             return RedirectToAction("Index", "Hesap");
         }
 
+        public ActionResult VirmanGonderen()
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VirmanAlan(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            
+            string gonderenHesap = fc.Get("gonderenHesap");
+            ViewBag.gonderenHesap = gonderenHesap;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Virman(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            
+            string gonderenHesap = fc.Get("gonderenHesap");
+            string alanHesap = fc.Get("alanHesap");
+            ViewBag.gonderenHesap = gonderenHesap;
+            ViewBag.alanHesap = alanHesap;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VirmanKontrol(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            dbBankEntities db = new dbBankEntities();
+
+            Musteri mus = (Musteri)Session["mus"];
+
+            string gonderenHesapEkNo = fc.Get("gonderenHesap");
+            string alanHesapEkNo = fc.Get("alanHesap");
+            int virmanMiktar = Convert.ToInt32(fc.Get("miktar"));
+
+            Hesap gonderenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == gonderenHesapEkNo && h.aktifmi == true).Single();
+            Hesap alanHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == alanHesapEkNo && h.aktifmi == true).Single();
+
+            gonderenHesap.bakiye -= virmanMiktar;
+            alanHesap.bakiye += virmanMiktar;
+            db.Hesap.Attach(gonderenHesap);
+            db.Hesap.Attach(alanHesap);
+            db.Entry(gonderenHesap).State = EntityState.Modified;
+            db.Entry(alanHesap).State = EntityState.Modified;
+
+            Islem gonderenIslem = new Islem();
+            gonderenIslem.hesapNo = mus.hesapNo;
+            gonderenIslem.hesapEkNo = gonderenHesap.hesapEkNo;
+            gonderenIslem.islemTipi = "Virman";
+            gonderenIslem.tarih = DateTime.Now;
+            gonderenIslem.aciklama = virmanMiktar + " TL " + alanHesapEkNo + " EkNolu Hesaba Virman Yapildi!";
+            db.Islem.Add(gonderenIslem);
+
+            Islem alanIslem = new Islem();
+            alanIslem.hesapNo = mus.hesapNo;
+            alanIslem.hesapEkNo = alanHesap.hesapEkNo;
+            alanIslem.islemTipi = "Virman";
+            alanIslem.tarih = DateTime.Now;
+            alanIslem.aciklama = virmanMiktar + " TL " + gonderenHesapEkNo + " EkNolu Hesabtan Virman Geldi!";
+            db.Islem.Add(alanIslem);
+
+            db.SaveChanges();
+            
+            ViewBag.gonderenHesap = gonderenHesap;
+            ViewBag.alanHesap = alanHesap;
+            ViewBag.miktar = virmanMiktar;
+
+
+            return View();
+        }
+
+        public ActionResult HavaleGonderen()
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HavaleAlan(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            
+            string gonderenHesapEkNo = fc.Get("gonderenHesapEkNo");
+            ViewBag.gonderenHesapEkNo = gonderenHesapEkNo;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Havale(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            
+            string gonderenHesapEkNo = fc.Get("gonderenHesapEkNo");
+            string aliciHesap = fc.Get("aliciHesapNo");
+            string aliciHesapEkNo = fc.Get("aliciHesapEkNo");
+            ViewBag.gonderenHesapEkNo = gonderenHesapEkNo;
+            ViewBag.aliciHesap = aliciHesap;
+            ViewBag.aliciHesapEkNo = aliciHesapEkNo;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HavaleKontrol(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            dbBankEntities db = new dbBankEntities();
+
+            Musteri mus = (Musteri)Session["mus"];
+
+            string gonderenHesapEkNo = fc.Get("gonderenHesapEkNo");
+            string aliciHesap = fc.Get("aliciHesap");
+            string aliciHesapEkNo = fc.Get("aliciHesapEkNo");
+            int havaleMiktar = Convert.ToInt32(fc.Get("miktar"));
+
+            Musteri aliciMus = db.Musteri.Where(m => m.hesapNo == aliciHesap).Single();
+
+            Hesap gonderenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == gonderenHesapEkNo && h.aktifmi == true).Single();
+            Hesap alanHesap = db.Hesap.Where(h => h.musTCKN == aliciMus.tcKimlikNo && h.hesapEkNo == aliciHesapEkNo && h.aktifmi == true).Single();
+
+            gonderenHesap.bakiye -= havaleMiktar;
+            alanHesap.bakiye += havaleMiktar;
+            db.Hesap.Attach(gonderenHesap);
+            db.Hesap.Attach(alanHesap);
+            db.Entry(gonderenHesap).State = EntityState.Modified;
+            db.Entry(alanHesap).State = EntityState.Modified;
+
+            Islem gonderenIslem = new Islem();
+            gonderenIslem.hesapNo = mus.hesapNo;
+            gonderenIslem.hesapEkNo = gonderenHesap.hesapEkNo;
+            gonderenIslem.islemTipi = "Havale";
+            gonderenIslem.tarih = DateTime.Now;
+            gonderenIslem.aciklama = havaleMiktar + " TL " + aliciHesap + " Nolu Müşterinin " + aliciHesapEkNo  + " EkNolu Hesabına Havale Yapildi!";
+            db.Islem.Add(gonderenIslem);
+
+            Islem alanIslem = new Islem();
+            alanIslem.hesapNo = aliciMus.hesapNo;
+            alanIslem.hesapEkNo = alanHesap.hesapEkNo;
+            alanIslem.islemTipi = "Havale";
+            alanIslem.tarih = DateTime.Now;
+            alanIslem.aciklama = havaleMiktar + " TL " + mus.hesapNo + " Nolu Müşteriden " + gonderenHesapEkNo + " EkNolu Hesabından Havale Geldi!";
+            db.Islem.Add(alanIslem);
+
+            db.SaveChanges();
+
+            ViewBag.gonderenHesap = gonderenHesap;
+            ViewBag.alanHesap = alanHesap;
+            ViewBag.aliciMus = aliciMus;
+            ViewBag.miktar = havaleMiktar;
+
+
+            return View();
+        }
+
+        public ActionResult AlanHesapKontrol(string hesapNo,string hesapEkNo)
+        {
+            dbBankEntities db = new dbBankEntities();
+            Musteri must = db.Musteri.Where(mus => mus.hesapNo == hesapNo).Single();
+            List<Hesap> hsp = db.Hesap.Where(h => h.musTCKN == must.tcKimlikNo && h.hesapEkNo == hesapEkNo).ToList();
+            if (must != null && hsp.Count > 0)
+            {
+                return Json(new { success = true, responseText = "var", musteri = must.tamAdi }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { success = true, responseText = "yok"}, JsonRequestBehavior.AllowGet);
+        }
     }
 }
