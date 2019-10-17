@@ -1,0 +1,68 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Virman Miktar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+
+    string gonderenHesap = ViewBag.gonderenHesap;
+    string alanHesap = ViewBag.alanHesap;
+
+    Hesap gonderenH = db.Hesap.Where(h => h.hesapEkNo == gonderenHesap && mus.tcKimlikNo == h.musTCKN).Single();
+
+    Hesap alanH = db.Hesap.Where(h => h.hesapEkNo == alanHesap && mus.tcKimlikNo == h.musTCKN).Single();
+
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <br />
+            <h2>Gonderen Hesap: <br /> @mus.hesapNo - @gonderenHesap <br /> Bakiye: <span id="mevcutBakiye">@gonderenH.bakiye</span> TL</h2>
+            <br />
+            <h2>Alan Hesap: <br /> @mus.hesapNo - @alanHesap <br /> Bakiye: @alanH.bakiye TL</h2>
+            <br />
+            <h2>Virman Miktarı:</h2>
+            @using (Html.BeginForm("VirmanKontrol", "Hesap", FormMethod.Post))
+            {
+                @Html.Hidden("gonderenHesap", gonderenHesap)
+                @Html.Hidden("alanHesap", alanHesap)
+                <div class="form-group">
+                    <input id="miktar" type="text" name="miktar" required="required" placeholder="Miktar Girin" autocomplete="off" class="form-control">
+                </div>
+                <button type="submit" id="havaleYap" class="btn btn-success">Tamamla</button>
+                <br />
+            }
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+    $(function () {
+        $('#miktar').keydown(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            var max = parseInt($("#mevcutBakiye").text());
+            var min = 0
+            if ($(this).val() > max) {
+                $(this).val(max);
+            }
+        });
+
+        $('#miktar').keyup(function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            var max = parseInt($("#mevcutBakiye").text());
+            var min = 0
+            if ($(this).val() > max) {
+                $(this).val(max);
+            }
+        });
+    });
+
+</script>

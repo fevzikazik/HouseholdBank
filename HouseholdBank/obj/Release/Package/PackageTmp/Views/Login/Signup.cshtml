@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script>
+    $(function () {
+        $('#tcKimlikNo').keyup(function (e) {
+            var tckn = $('#tcKimlikNo').val();
+            if (tckn.length==11) {
+                $.ajax({
+                url: "@Url.Action("TCKNKontrol","Login")",
+                contentType: 'application/json; charset=utf-8', 
+                dataType: "json",
+                data: {
+                    input: tckn
+                },
+                    success: function (response) {
+                        if (response.responseText == "var") {
+                            document.getElementById('btnGuncelle').disabled = true;
+                            alert("TCKN zaten kayıtlı! Lütfen kayıtlı olmayan bir TCKN girmeyi deneyin!");
+                        }
+                        else {
+                            document.getElementById('btnGuncelle').disabled = false;
+                        }
+                    },
+                    error: function (response) {
+                        alert("error!");
+                    }
+            });
+            }
+            else {
+                document.getElementById('btnGuncelle').disabled = false;
+            }
+        });
+    });
+</script>
+
+<script>
+    var check = function () {
+        if (document.getElementById('sifre').value ==
+            document.getElementById('sifretekrar').value) {
+            document.getElementById('eslesme').style.color = 'green';
+            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşti!';
+            document.getElementById('btnGuncelle').disabled = false;
+        } else {
+            document.getElementById('eslesme').style.color = 'red';
+            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşmiyor!';
+            document.getElementById('btnGuncelle').disabled = true;
+        }
+    }
+</script>
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-5 ml-auto d-flex align-items-center mt-4 mt-md-0">
+            <div>
+                <h2>Kayıt Sayfasına Hoşgeldiniz</h2>
+                <p class="margin-top-s">Kayıt olun ve Household bankasının teknolojilerinden faydalanın...</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <form action="/Login/KayitKontrol" method="post">
+                    <div class="container">
+                        <h1>Kaydolun</h1>
+                        <p>Kayıt olmak için lütfen aşağıdaki bilgileri doldurun.</p>
+                        <hr>
+                        <label for="tcKimlikNo"><b>TCKN</b></label>
+                        <input type="text" placeholder="TCKN Girin" id="tcKimlikNo" name="tcKimlikNo" maxlength="11" pattern="[0-9]{11}" required title="Lütfen TCKN'yi yalnız rakam ve 11 haneli şeklinde girin!">
+                        <span id='tcknkontrol'></span><br /><br />
+                        <label for="tamAdi"><b>Ad Soyad</b></label>
+                        <input type="text" placeholder="Ad Soyad Girin" name="tamAdi" maxlength="50" required>
+
+                        <label for="sifre"><b>Şifre</b></label>
+                        <input type="password" placeholder="Şifre Girin" value="" onkeyup="check();" id="sifre" name="sifre" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
+                        <span id='eslesme'></span><br />
+                        <label for="sifretekrar"><b>Şifre Tekrar</b></label>
+                        <input type="password" placeholder="Şifre Tekrar Girin" onkeyup="check();" id="sifretekrar" name="sifretekrar" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
+
+                        <label for="telefon"><b>Telefon</b></label>
+                        <input type="text" placeholder="Telefon Girin" id="telefon" name="telefon" maxlength="20" required>
+
+                        <label for="ePosta"><b>Email</b></label>
+                        <input type="text" placeholder="Email Girin" name="ePosta" maxlength="50" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required title="Lütfen geçerli bir email girin!">
+
+                        <label for="dogumTarihi"><b>Doğum Tarihi</b></label>
+                        <input type="date" min="1919-01-01" max="2001-01-01" name="dogumTarihi" required>
+
+                        <label for="adres"><b>Adres</b></label>
+                        <input type="text" placeholder="Adres Girin" name="adres" maxlength="150" required>
+
+                        <div class="clearfix">
+                            <button type="submit" id="btnGuncelle" class="signup">Kaydol</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

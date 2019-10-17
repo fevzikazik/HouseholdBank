@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - HouseHold</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#tcKimlikNo').keydown(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#tcKimlikNo').keyup(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#sifre').keydown(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#sifre').keyup(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+            $('#sifretekrar').keydown(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#sifretekrar').keyup(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#telefon').keydown(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#telefon').keyup(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#miktar').keydown(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            $('#miktar').keyup(function (event) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+    </script>
+    <style>
+        /* Bordered form */
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=password], input[type=date], input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            /* Add a hover effect for buttons */
+            button:hover {
+                opacity: 0.8;
+            }
+
+        /* Extra style for the cancel button (red) */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        /* The "Forgot password" text */
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+            button:hover, a:hover {
+                opacity: 0.7;
+            }
+
+
+        .vertical-menu {
+            width: 300px;
+        }
+
+            .vertical-menu a {
+                background-color: floralwhite;
+                color: black;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+                .vertical-menu a:hover {
+                    background-color: #4CAF50;
+                }
+
+                .vertical-menu a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @@media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+        @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+        <div class="super_container_inner">
+            <div class="super_overlay"></div>
+
+            <!-- Body -->
+            @RenderBody()
+
+
+            <!-- Footer -->
+            @Html.Partial("~/Views/Shared/_Footer.cshtml")
+
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

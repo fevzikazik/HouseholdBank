@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="dbBankEntities-Web.config Connection String" description="dbBankEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.dbBank.csdl|res://*/Models.dbBank.ssdl|res://*/Models.dbBank.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=testsunucu-41.database.windows.net;initial catalog=dbBank;persist security info=True;user id=sucunuadi;password=Sunucu41;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PCX\\Desktop\\vsprojects\\HouseholdBank\\HouseholdBank\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbBankEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,42 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Virman Sonuç";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+
+    Hesap gonderenHesap = ViewBag.gonderenHesap;
+    Hesap alanHesap = ViewBag.alanHesap;
+
+    int virmanMiktar = Convert.ToInt32(ViewBag.miktar);
+
+    Hesap gonderenH = db.Hesap.Where(h => h.hesapEkNo == gonderenHesap.hesapEkNo && mus.tcKimlikNo == h.musTCKN).Single();
+
+    Hesap alanH = db.Hesap.Where(h => h.hesapEkNo == alanHesap.hesapEkNo && mus.tcKimlikNo == h.musTCKN).Single();
+
+
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <br />
+            <h2>Gonderen Hesap: <br /> @mus.hesapNo - @gonderenHesap.hesapEkNo <br /> Yeni Bakiye: @gonderenH.bakiye TL</h2>
+            <a href="@Url.Action("Detay","Hesap", new { id = gonderenHesap.hesapEkNo})"><button class="btn btn-success">Gönderen Hesaba Git</button></a>
+            <br />
+            <h2>Alan Hesap: <br /> @mus.hesapNo - @alanHesap.hesapEkNo <br /> Yeni Bakiye: @alanH.bakiye TL</h2>
+            <a href="@Url.Action("Detay","Hesap", new { id = alanHesap.hesapEkNo})"><button class="btn btn-success">Alici Hesaba Git</button></a>
+            <br />
+            <h2>Virman Miktarı: <br /> @virmanMiktar TL</h2>
+            <br />
+            <h2>Sonuç: Başarılı!</h2>
+            <br />
+            <a href="@Url.Action("Index","Hesap")"><button class="btn btn-success">Hesaplarıma Git</button></a>
+        </div>
+    </div>
+
+</div>

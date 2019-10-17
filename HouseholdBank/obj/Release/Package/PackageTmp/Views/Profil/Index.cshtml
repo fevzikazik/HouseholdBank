@@ -1,0 +1,56 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+    int toplamBakiye = 0;
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
+    foreach (Hesap hesap in hesapList)
+    {
+        toplamBakiye += (int)hesap.bakiye;
+    }
+}
+
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <div class="card" style="width:400px">
+                    <div class="justify-content-center">
+                        <img src="~/Content/img/profil.png" alt="John" style="width:60%;margin-top:1em;margin-bottom:1em;">
+                    </div>
+                    <p><button>Kişisel Bilgilerim</button></p>
+                    <h1>@mus.tamAdi</h1>
+                    <p class="title">Hesap No: @mus.hesapNo</p>
+                    <p class="title">Toplam Bakiye: @toplamBakiye</p>
+                    <hr />
+                    <p class="title">Dogum Tarihi: @mus.dogumTarihi.Value.Date.ToString("dd/MM/yyyy")</p>
+                    <p class="title">Tel: @mus.telefon</p>
+                    <p class="title">Eposta: @mus.ePosta</p>
+                    <p class="title">Adres: @mus.adres</p>
+                    <p><a href="/Profil/Duzenle"><button>Düzenle</button></a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 ml-auto d-flex align-items-center mt-4 mt-md-0">
+            <div>
+                <h2>Menu</h2>
+                <p class="margin-top-s">
+                    <div class="vertical-menu">
+                        <a href="@Url.Action("Index","Hesap")">Hesaplarım</a>
+                        <a href="@Url.Action("HavaleGonderen","Hesap")">Para Transferi(Havale)</a>
+                        <a href="@Url.Action("VirmanGonderen","Hesap")">Para Transferi(Virman)</a>
+                        <a href="@Url.Action("Index","HGS")">HGS İşlemleri</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+﻿@using HouseholdBank.Models;
+@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Havale Gönderen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
+
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @using (Html.BeginForm("HavaleAlan", "Hesap", FormMethod.Post))
+            {
+                <h2>Gonderen Hesap Ek No:</h2>
+                <div class="form-group">
+                    <select class="form-control" id="input-select" name="gonderenHesapEkNo">
+                        @foreach (Hesap hesap in hesapList)
+                        {
+                            if (hesap.bakiye == 0)
+                            {
+                                continue;
+                            }
+                            <option name="gonderenHesapEkNo" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
+                        }
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Devam Et</button>
+                <br />
+            }
+        </div>
+    </div>
+
+</div>

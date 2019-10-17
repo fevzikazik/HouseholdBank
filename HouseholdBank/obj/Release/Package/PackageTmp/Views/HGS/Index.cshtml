@@ -1,0 +1,91 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "HGS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+
+    List<HGS> hgsListesi = ViewBag.hgsListesi;
+
+    bool isUye = false;
+    foreach (HGS hgs in hgsListesi)
+    {
+        if (hgs.musTCKN == mus.tcKimlikNo)
+        {
+            isUye = true;
+        }
+    }
+
+    HGS musHgs = null;
+    if (isUye)
+    {
+        musHgs = hgsListesi.Where(h => h.musTCKN == mus.tcKimlikNo).Single();
+    }
+}
+
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+    @if (isUye)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row justify-content-center" style="margin-top:2em">
+                    <h2>
+                        HGS Durumu: @if (musHgs.aktifmi == true)
+                        {<label>Aktif</label>}
+                        <br />  HGS Bakiye: @musHgs.bakiye TL
+                    </h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="justify-content-center" style="margin-top:2em">
+                    <h2>HGS Islemleri</h2>
+                    <p class="margin-top-s">
+                        <div class="vertical-menu">
+                            <a href="@Url.Action("BakiyeGuncelle","HGS")" data-toggle="modal" data-target="#HGSYukle">Bakiye Yükle</a>
+                            <a href="@Url.Action("IptalEt","HGS", new { id= musHgs.hgsID })">HGS İptal Et</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="HGSYukle" tabindex="-1" role="dialog" aria-labelledby="">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">HGS Yükle - Mevcut HGS Bakiye: @musHgs.bakiye</h4>
+                    </div>
+                    @using (Html.BeginForm("BakiyeGuncelle", "HGS", new { @id = musHgs.hgsID }, FormMethod.Post))
+                    {
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Yatırılacak Miktarı Girin(Tek Seferde Maksimum 999,999 ₺ Yatırabilirsiniz!):</label>
+                                <input type="text" id="miktar" name="miktar" maxlength="6" class="form-control" autocomplete="off" required title="Lütfen miktar girin!" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                            <button type="submit" class="btn btn-success">Bakiye Yükle!</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2>Aktif HGS üyeliğiniz bulunmamaktadır. <br /> Satın Almak İçin Lütfen Tıklayın!</h2>
+
+                <a href="@Url.Action("UyelikOlustur","HGS")"><button class="btn btn-success">Satın Al</button></a>
+            </div>
+        </div>
+    }
+</div>

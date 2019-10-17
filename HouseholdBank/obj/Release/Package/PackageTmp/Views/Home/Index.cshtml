@@ -1,0 +1,75 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Anasayfa";
+
+    Musteri gelenMus = null;
+    if (Session["mus"]!=null)
+    {
+        gelenMus = (Musteri)Session["mus"];
+    }
+}
+
+
+<header class="masthead text-center text-white" style="background-image:url('../../Content/img/backheader.jpg')">
+    <div class="masthead-content">
+        <div class="container">
+            <h1 class="masthead-heading mb-0">Household Bank</h1>
+            <h2 class="masthead-subheading mb-0">Ekonomin bize emanet!</h2>
+            @if (gelenMus == null)
+            {
+                <a href="@Url.Action("Index","Login")" class="btn btn-primary btn-xl rounded-pill mt-5">GIRIS YAP</a>
+            }
+        </div>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="~/Content/img/01.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Üretimde yerli otomobile özel taşıt kredisi!</h2>
+                    <p>Yerli üretim yapan anlaşmalı firmalardan 01.10.2019 tarihi itibari ile sıfır km binek ve ticari araçları satın almak isteyen müşterilerimize uygun şartlarda finansman sağlanması amacı ile özel taşıt kredisi paketi hazırlanmıştır.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="~/Content/img/02.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h2 class="display-4">Faizsiz Bankacılık...</h2>
+                    <p>Fon toplama ve fon kullandırma faaliyetleri ile diğer bütün bankacılık işlemlerinde faizin kullanılmadığı finansal sistemdir.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="~/Content/img/03.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Türkiyenin en en en bankası!</h2>
+                    <p>Household ailesi olarak gün geçtikce büyük işlere imza atmaya devam ediyoruz. Çalışmalarımız tüm hızıyla devam ediyor, edecek, etmeli...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

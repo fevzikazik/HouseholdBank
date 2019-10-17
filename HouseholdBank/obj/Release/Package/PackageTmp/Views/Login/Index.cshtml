@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <form action="/Login/GirisKontrol" name="girisFormu" method="post">
+                    <div class="imgcontainer">
+                        <img src="~/Content/img/imglogin.png">
+                    </div>
+
+                    <div class="container">
+                        <h1>Giriş Yapın</h1>
+                        <hr>
+                        <label for="tcKimlikNo"><b>TCKN</b></label>
+                        <input type="text" placeholder="TC Kimlik No Girin" id="tcKimlikNo" name="tcKimlikNo" maxlength="11" pattern="[0-9]{11}" required title="Lütfen TCKN'yi yalnız rakam ve 11 haneli şeklinde girin!">
+
+                        <label for="sifre"><b>Şifre</b></label>
+                        <input type="password" placeholder="Şifre Girin" id="sifre" name="sifre" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
+
+                        <button type="submit" id="login" name="login">Giriş Yap</button>
+                    </div>
+
+                    <div class="container" style="background-color:#f1f1f1">
+                        <a href="@Url.Action("Signup","Login")"><button type="button" class="cancelbtn">Kaydol</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 ml-auto d-flex align-items-center mt-4 mt-md-0">
+            <div>
+                <h2>Giriş Sayfasına Hoşgeldiniz</h2>
+                <p class="margin-top-s">Giriş yaptıktan sonra hesabınızı yönetebilir, havale, virman, hgs ve kredi gibi işlemlerinizi gerçekleştirebilirsiniz...</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $('.input').keypress(function (e) {
+        if (e.which == 13) {
+            $('girisFormu#login').submit();
+            return false;
+        }
+    });
+</script>
