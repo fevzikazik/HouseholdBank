@@ -69,7 +69,6 @@ C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.WebPa
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Newtonsoft.Json.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Antlr3.Runtime.pdb
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csprojAssemblyReference.cache
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csproj.CoreCompileInputs.cache
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csproj.CopyComplete
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.dll
@@ -78,3 +77,4 @@ C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.xml
+C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csprojAssemblyReference.cache

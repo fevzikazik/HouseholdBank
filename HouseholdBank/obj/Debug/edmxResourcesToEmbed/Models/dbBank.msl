@@ -52,5 +52,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HGS">
+      <EntityTypeMapping TypeName="dbBankModel.HGS">
+        <MappingFragment StoreEntitySet="HGS">
+          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+          <ScalarProperty Name="hgsID" ColumnName="hgsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

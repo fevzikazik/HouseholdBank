@@ -23,6 +23,15 @@
     <Property Name="kapanisTarihi" Type="datetime" />
     <Property Name="bakiye" Type="int" />
   </EntityType>
+  <EntityType Name="HGS">
+    <Key>
+      <PropertyRef Name="hgsID" />
+    </Key>
+    <Property Name="hgsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="musTCKN" Type="nvarchar" MaxLength="11" />
+    <Property Name="bakiye" Type="int" />
+    <Property Name="aktifmi" Type="bit" />
+  </EntityType>
   <EntityType Name="Islem">
     <Key>
       <PropertyRef Name="islemID" />
@@ -50,6 +59,7 @@
   <EntityContainer Name="dbBankModelStoreContainer">
     <EntitySet Name="Banka" EntityType="Self.Banka" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HGS" EntityType="Self.HGS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Islem" EntityType="Self.Islem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

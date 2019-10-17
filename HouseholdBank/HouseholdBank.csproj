@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HesapController.cs" />
+    <Compile Include="Controllers\HGSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
@@ -156,12 +157,16 @@
     <Compile Include="Models\Hesap.cs">
       <DependentUpon>dbBank.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HGS.cs">
+      <DependentUpon>dbBank.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Islem.cs">
       <DependentUpon>dbBank.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Musteri.cs">
       <DependentUpon>dbBank.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +278,7 @@
     <Content Include="Views\Hesap\Havale.cshtml" />
     <Content Include="Views\Hesap\HavaleAlan.cshtml" />
     <Content Include="Views\Hesap\HavaleGonderen.cshtml" />
+    <Content Include="Views\HGS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

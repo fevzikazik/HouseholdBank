@@ -29,5 +29,6 @@ namespace HouseholdBank.Models
         public virtual DbSet<Islem> Islem { get; set; }
         public virtual DbSet<Musteri> Musteri { get; set; }
         public virtual DbSet<Hesap> Hesap { get; set; }
+        public virtual DbSet<HGS> HGS { get; set; }
     }
 }

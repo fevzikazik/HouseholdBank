@@ -28,6 +28,15 @@
           <Property Name="kapanisTarihi" Type="datetime" />
           <Property Name="bakiye" Type="int" />
         </EntityType>
+        <EntityType Name="HGS">
+          <Key>
+            <PropertyRef Name="hgsID" />
+          </Key>
+          <Property Name="hgsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musTCKN" Type="nvarchar" MaxLength="11" />
+          <Property Name="bakiye" Type="int" />
+          <Property Name="aktifmi" Type="bit" />
+        </EntityType>
         <EntityType Name="Islem">
           <Key>
             <PropertyRef Name="islemID" />
@@ -55,6 +64,7 @@
         <EntityContainer Name="dbBankModelStoreContainer">
           <EntitySet Name="Banka" EntityType="Self.Banka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HGS" EntityType="Self.HGS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Islem" EntityType="Self.Islem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -67,6 +77,7 @@
           <EntitySet Name="Islem" EntityType="dbBankModel.Islem" />
           <EntitySet Name="Musteri" EntityType="dbBankModel.Musteri" />
           <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
+          <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
         </EntityContainer>
         <EntityType Name="Banka">
           <Key>
@@ -114,6 +125,15 @@
           <Property Name="acilisTarihi" Type="DateTime" Precision="3" />
           <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
           <Property Name="bakiye" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HGS">
+          <Key>
+            <PropertyRef Name="hgsID" />
+          </Key>
+          <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="bakiye" Type="Int32" />
+          <Property Name="aktifmi" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -169,6 +189,16 @@
                 <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
                 <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
                 <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HGS">
+            <EntityTypeMapping TypeName="dbBankModel.HGS">
+              <MappingFragment StoreEntitySet="HGS">
+                <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+                <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+                <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+                <ScalarProperty Name="hgsID" ColumnName="hgsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
