@@ -51,7 +51,9 @@
 <script>
     $(function () {
         $('#miktar').keydown(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
             var max = parseInt($("#mevcutBakiye").text());
             var min = 0
             if ($(this).val() > max) {
@@ -60,7 +62,9 @@
         });
 
         $('#miktar').keyup(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
             var max = parseInt($("#mevcutBakiye").text());
             var min = 0
             if ($(this).val() > max) {

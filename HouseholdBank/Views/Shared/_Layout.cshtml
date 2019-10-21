@@ -21,11 +21,25 @@
     <script>
         $(function () {
             $('#tcKimlikNo').keydown(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value
+                    .replace(/[0]*/, '')
+                    .replace(/[^\d]*/g, '');
             });
 
             $('#tcKimlikNo').keyup(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value
+                    .replace(/[0]*/, '')
+                    .replace(/[^\d]*/g, '');
+            });
+
+            $('#tamAdi').keydown(function (event) {
+                this.value = this.value
+                    .replace(/[^a-zA-Z]*/g, '');
+            });
+
+            $('#tamAdi').keyup(function (event) {
+                this.value = this.value
+                    .replace(/[^a-zA-Z]*/g, '');
             });
 
             $('#sifre').keydown(function (event) {
@@ -44,19 +58,26 @@
             });
 
             $('#telefon').keydown(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value
+                    .replace(/^[^0]*/, '')
+                    .replace(/[^\d]*/g, '');
             });
 
             $('#telefon').keyup(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value
+                    .replace(/^[^0]*/, '')
+                    .replace(/[^\d]*/g, '');
             });
 
             $('#miktar').keydown(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
+                this.value = this.value
+                    .replace(/[0]*/, '')
+                    .replace(/[^\d]*/g, '');});
 
             $('#miktar').keyup(function (event) {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value
+                    .replace(/[0]*/, '')
+                    .replace(/[^\d]*/g, '');
             });
         });
 

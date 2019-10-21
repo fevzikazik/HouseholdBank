@@ -1,4 +1,5 @@
-﻿@using HouseholdBank.Models;
+﻿
+@using HouseholdBank.Models;
 @using HouseholdBank.Models;
 @{
     ViewBag.Title = "Havale Alan";
@@ -21,10 +22,10 @@
 
 <script>
     $(function () {
-        $('#aliciHesapEkNo').keyup(function (e) {
+        $('#aliciHesapEkNo, #aliciHesapNo').keyup(function (e) {
             var hspNo = $('#aliciHesapNo').val();
             var hspEkNo = $('#aliciHesapEkNo').val();
-            if (hspEkNo.length==4) {
+            if (hspEkNo.length == 4 && hspNo.length == 9) {
                 $.ajax({
                 url: "@Url.Action("AlanHesapKontrol", "Hesap")",
                 contentType: 'application/json; charset=utf-8',
@@ -40,7 +41,7 @@
                         }
                         else {
                             document.getElementById('btnDevam').disabled = true;
-                            alert("Girilen Hesap Bulunamadı! Lütfen Geçerli Bir Alıcı Hesabı Girin!");
+                            alert("Girilen Bilgilere Ait Hesap Bulunamadı! Lütfen Geçerli Bir Alıcı Hesap Bilgisi Girin!");
                         }
                     },
                     error: function (response) {
@@ -49,7 +50,7 @@
             });
             }
             else {
-                document.getElementById('btnDevam').disabled = false;
+                document.getElementById('btnDevam').disabled = true;
                 $("#aliciAdi").val("");
             }
         });
@@ -59,19 +60,27 @@
 <script>
     $(function () {
         $('#aliciHesapNo').keydown(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
         });
 
         $('#aliciHesapNo').keyup(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
         });
 
         $('#aliciHesapEkNo').keydown(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
         });
 
         $('#aliciHesapEkNo').keyup(function (event) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]*/g, '');
         });
     });
 

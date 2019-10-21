@@ -336,11 +336,29 @@ namespace HouseholdBank.Controllers
         public ActionResult AlanHesapKontrol(string hesapNo,string hesapEkNo)
         {
             dbBankEntities db = new dbBankEntities();
-            Musteri must = db.Musteri.Where(mus => mus.hesapNo == hesapNo).Single();
-            List<Hesap> hsp = db.Hesap.Where(h => h.musTCKN == must.tcKimlikNo && h.hesapEkNo == hesapEkNo).ToList();
+            Musteri musteri = (Musteri)Session["mus"];
+            Musteri must = null;
+            List<Musteri> mustList = db.Musteri.ToList();
+            foreach (Musteri mus in mustList)
+            {
+                if (mus.hesapNo==hesapNo)
+                {
+                    must = mus;
+                }
+            }
+
+            List<Hesap> hsp = null;
+            if (must!=null)
+            {
+                hsp = db.Hesap.Where(h => h.musTCKN == must.tcKimlikNo && h.hesapEkNo == hesapEkNo && h.aktifmi == true).ToList();
+            }
+
             if (must != null && hsp.Count > 0)
             {
-                return Json(new { success = true, responseText = "var", musteri = must.tamAdi }, JsonRequestBehavior.AllowGet);
+                if (must.tcKimlikNo != musteri.tcKimlikNo)
+                {
+                    return Json(new { success = true, responseText = "var", musteri = must.tamAdi }, JsonRequestBehavior.AllowGet);
+                }
             }
 
             return Json(new { success = true, responseText = "yok"}, JsonRequestBehavior.AllowGet);
