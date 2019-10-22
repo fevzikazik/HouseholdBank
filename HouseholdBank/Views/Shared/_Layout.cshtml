@@ -34,12 +34,12 @@
 
             $('#tamAdi').keydown(function (event) {
                 this.value = this.value
-                    .replace(/[^a-zA-Z]*/g, '');
+                    .replace(/[^a-zA-Z ]*/g, '');
             });
 
             $('#tamAdi').keyup(function (event) {
                 this.value = this.value
-                    .replace(/[^a-zA-Z]*/g, '');
+                    .replace(/[^a-zA-Z ]*/g, '');
             });
 
             $('#sifre').keydown(function (event) {
