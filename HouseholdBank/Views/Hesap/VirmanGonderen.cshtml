@@ -7,7 +7,7 @@
     Musteri mus = (Musteri)Session["mus"];
     dbBankEntities db = new dbBankEntities();
 
-    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true && h.bakiye >0).ToList();
 
 }
 
@@ -18,25 +18,32 @@
         <div class="col-md-8">
             <br />
             <h2>Gonderen Hesap Ek No:</h2>
-            @using (Html.BeginForm("VirmanAlan", "Hesap", FormMethod.Post))
+            @if (hesapList.Count > 0)
             {
-                <div class="form-group">
-                    <select class="form-control" id="input-select" name="gonderenHesap">
-                        @foreach (Hesap hesap in hesapList)
-                        {
-                            if (hesap.bakiye == 0)
+                using (Html.BeginForm("VirmanAlan", "Hesap", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <select class="form-control" id="input-select" name="gonderenHesap">
+                            @foreach (Hesap hesap in hesapList)
                             {
-                                continue;
+                                if (hesap.bakiye == 0)
+                                {
+                                    continue;
+                                }
+                                <option name="gonderenHesap" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
                             }
-                            <option name="gonderenHesap" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
-                        }
 
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success">Devam Et</button>
-                <br />
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Devam Et</button>
+                    <br />
+                }
             }
-            </div>
+            else
+            {
+                <h2>Göndermek için hesabınız yok!</h2>
+            }
+        </div>
     </div>
 
 </div>

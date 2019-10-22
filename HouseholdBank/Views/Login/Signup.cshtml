@@ -40,14 +40,22 @@
 
 <script>
     var check = function () {
-        if (document.getElementById('sifre').value ==
-            document.getElementById('sifretekrar').value) {
-            document.getElementById('eslesme').style.color = 'green';
-            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşti!';
-            document.getElementById('btnGuncelle').disabled = false;
-        } else {
-            document.getElementById('eslesme').style.color = 'red';
-            document.getElementById('eslesme').innerHTML = 'Şifreler eşleşmiyor!';
+        var sifre = $('#sifre').val();
+        var sifretekrar = $('#sifretekrar').val();
+        if (sifre.length == 8 && sifretekrar.length == 8) {
+            if (document.getElementById('sifre').value ==
+                document.getElementById('sifretekrar').value) {
+                document.getElementById('eslesme').style.color = 'green';
+                document.getElementById('eslesme').innerHTML = 'Şifreler eşleşti!';
+                document.getElementById('btnGuncelle').disabled = false;
+            } else {
+                document.getElementById('eslesme').style.color = 'red';
+                document.getElementById('eslesme').innerHTML = 'Şifreler eşleşmiyor!';
+                document.getElementById('btnGuncelle').disabled = true;
+            }
+        }
+        else {
+            document.getElementById('eslesme').innerHTML = '';
             document.getElementById('btnGuncelle').disabled = true;
         }
     }
@@ -72,10 +80,10 @@
                         <p>Kayıt olmak için lütfen aşağıdaki bilgileri doldurun.</p>
                         <hr>
                         <label for="tcKimlikNo"><b>TCKN</b></label>
-                        <input type="text" placeholder="TCKN Girin" id="tcKimlikNo" name="tcKimlikNo" maxlength="11" pattern="^((?!(0))[0-9]{11})$" required title="Lütfen TCKN'yi yalnız rakam ve 11 haneli şeklinde girin!">
+                        <input type="text" placeholder="TCKN Girin" id="tcKimlikNo" autocomplete="off" name="tcKimlikNo" maxlength="11" pattern="^((?!(0))[0-9]{11})$" required title="Lütfen TCKN'yi yalnız rakam ve 11 haneli şeklinde girin!">
                         <span id='tcknkontrol'></span><br /><br />
                         <label for="tamAdi"><b>Ad Soyad</b></label>
-                        <input type="text" placeholder="Ad Soyad Girin" id="tamAdi" name="tamAdi" maxlength="50" required>
+                        <input type="text" placeholder="Ad Soyad Girin" id="tamAdi" autocomplete="off" name="tamAdi" maxlength="50" required>
 
                         <label for="sifre"><b>Şifre</b></label>
                         <input type="password" placeholder="Şifre Girin" value="" onkeyup="check();" id="sifre" name="sifre" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
@@ -84,16 +92,16 @@
                         <input type="password" placeholder="Şifre Tekrar Girin" onkeyup="check();" id="sifretekrar" name="sifretekrar" maxlength="8" pattern="[0-9]{8}" required title="Lütfen şifrenizi yalnız rakam ve 8 haneli olacak şekilde girin!">
 
                         <label for="telefon"><b>Telefon</b></label>
-                        <input type="text" placeholder="Telefon Girin" id="telefon" name="telefon" maxlength="11" required>
+                        <input type="text" placeholder="Telefon Girin" id="telefon" name="telefon" autocomplete="off" maxlength="11" required>
 
                         <label for="ePosta"><b>Email</b></label>
-                        <input type="text" placeholder="Email Girin" name="ePosta" maxlength="50" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required title="Lütfen geçerli bir email girin!">
+                        <input type="text" placeholder="Email Girin" name="ePosta" maxlength="50" autocomplete="off" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required title="Lütfen geçerli bir email girin!">
 
                         <label for="dogumTarihi"><b>Doğum Tarihi</b></label>
                         <input type="date" min="1919-01-01" max="2001-01-01" name="dogumTarihi" required>
 
                         <label for="adres"><b>Adres</b></label>
-                        <input type="text" placeholder="Adres Girin" name="adres" maxlength="150" required>
+                        <input type="text" placeholder="Adres Girin" name="adres" maxlength="150" autocomplete="off" required>
 
                         <div class="clearfix">
                             <button type="submit" id="btnGuncelle" class="signup">Kaydol</button>

@@ -7,10 +7,9 @@
     Musteri mus = (Musteri)Session["mus"];
     dbBankEntities db = new dbBankEntities();
 
-    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
-
-
     string gonderenHesap = ViewBag.gonderenHesap;
+
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true && h.hesapEkNo != gonderenHesap).ToList();
 
     Hesap gonderenH = db.Hesap.Where(h => h.hesapEkNo == gonderenHesap && mus.tcKimlikNo == h.musTCKN).Single();
 
@@ -26,24 +25,27 @@
             <h2>Gonderen Hesap Ek No: <br /> @mus.hesapNo - @gonderenHesap <br /> Bakiye: @gonderenH.bakiye TL</h2>
             <br />
             <h2>Alan Hesap Ek No:</h2>
-            @using (Html.BeginForm("Virman", "Hesap", FormMethod.Post))
+            @if (hesapList.Count > 0)
             {
-                @Html.Hidden("gonderenHesap",gonderenHesap)
-                <div class="form-group">
-                    <select class="form-control" id="input-select" name="alanHesap">
-                        @foreach (Hesap hesap in hesapList)
-                        {
-                            if (hesap.hesapEkNo == gonderenHesap)
+                using (Html.BeginForm("Virman", "Hesap", FormMethod.Post))
+                {
+                    @Html.Hidden("gonderenHesap", gonderenHesap)
+                    <div class="form-group">
+                        <select class="form-control" id="input-select" name="alanHesap">
+                            @foreach (Hesap hesap in hesapList)
                             {
-                                continue;
+                                <option name="alanHesap" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
                             }
-                        <option name="alanHesap" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
-                        }
 
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success">Devam Et</button>
-                <br />
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Devam Et</button>
+                    <br />
+                }
+            }
+            else
+            {
+                <h2>Alici hesabınız yok!</h2>
             }
         </div>
     </div>
