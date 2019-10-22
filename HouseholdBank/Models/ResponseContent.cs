@@ -24,7 +24,8 @@ namespace HouseholdBank.Models
 
         private string CheckList(List<T> list)
         {
-            return list == null ? "0" : list.Count() != 0 ? "1" : "3";
+            //return list == null ? "0" : list.Count() != 0 ? "1" : "3";
+            return list == null ? "0" : "1";
         }
 
         public void Dispose()

@@ -60,8 +60,10 @@
                 .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
             //alert(max)
             max = max.replace('.', ',');
-            if ($(this).val() > max) {
-                $(this).val(max);
+            if ($(this).val().length >= virguldenOnce.length) {
+                if ($(this).val() > max) {
+                    $(this).val(max);
+                }
             }
         });
 
@@ -72,8 +74,10 @@
                 .replace(/(\,,*)\,/g, '$1')
                 .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
             max = max.replace('.', ',');
-            if ($(this).val() > max) {
-                $(this).val(max);
+            if ($(this).val().length >= virguldenOnce.length) {
+                if ($(this).val() > max) {
+                    $(this).val(max);
+                }
             }
         });
     });

@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="dbBankModel.HGS" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankModel.Islem" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankModel.Musteri" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankModel.Hesap" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="dbBankModel.Hesap" Width="1.5" PointX="2.75" PointY="1.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
