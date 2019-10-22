@@ -10,7 +10,7 @@
     Hesap gonderenHesap = ViewBag.gonderenHesap;
     Hesap alanHesap = ViewBag.alanHesap;
 
-    int virmanMiktar = Convert.ToInt32(ViewBag.miktar);
+    decimal virmanMiktar = Convert.ToDecimal(ViewBag.miktar);
 
     Hesap gonderenH = db.Hesap.Where(h => h.hesapEkNo == gonderenHesap.hesapEkNo && mus.tcKimlikNo == h.musTCKN).Single();
 

@@ -36,7 +36,7 @@
                 @Html.Hidden("aliciHesap", aliciHesap)
                 @Html.Hidden("aliciHesapEkNo", aliciHesapEkNo)
                 <div class="form-group">
-                    <input id="miktar" type="text" name="miktar" required="required" placeholder="Miktar Girin" autocomplete="off" class="form-control">
+                    <input id="miktarHavale" type="text" name="miktar" required="required" placeholder="Miktar Girin" autocomplete="off" class="form-control">
                 </div>
                 <button type="submit" id="havaleYap" class="btn btn-success">Tamamla</button>
                 <br />
@@ -56,13 +56,14 @@
         var beforeDecimal = virguldenOnce.length;
         var afterDecimal = 2;
 
-        $('#miktar').keydown(function (event) {
+        $('#miktarHavale').keydown(function (event) {
+            this.value = this.value
             this.value = this.value
                 .replace(/[^\d,]/g, '')
                 .replace(new RegExp("(^[\\d]{" + beforeDecimal + "})[\\d]", "g"), '$1')
                 .replace(/(\,,*)\,/g, '$1')
-                .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
-            //alert(max)
+                .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1')
+                .replace(/(\,\d*)\,/g, '$1');
             max = max.replace('.', ',');
             if ($(this).val().length >= virguldenOnce.length) {
                 if ($(this).val() > max) {
@@ -71,12 +72,13 @@
             }
         });
 
-        $('#miktar').keyup(function (event) {
+        $('#miktarHavale').keyup(function (event) {
             this.value = this.value
                 .replace(/[^\d,]/g, '')
                 .replace(new RegExp("(^[\\d]{" + beforeDecimal + "})[\\d]", "g"), '$1')
                 .replace(/(\,,*)\,/g, '$1')
-                .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
+                .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1')
+                .replace(/(\,\d*)\,/g, '$1');
             max = max.replace('.', ',');
             if ($(this).val().length >= virguldenOnce.length) {
                 if ($(this).val() > max) {

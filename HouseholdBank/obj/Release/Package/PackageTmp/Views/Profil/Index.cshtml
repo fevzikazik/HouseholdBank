@@ -10,7 +10,7 @@
     List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
     foreach (Hesap hesap in hesapList)
     {
-        toplamBakiye += Convert.ToInt32(hesap.bakiye);
+        toplamBakiye += Convert.ToDecimal(hesap.bakiye);
     }
 }
 

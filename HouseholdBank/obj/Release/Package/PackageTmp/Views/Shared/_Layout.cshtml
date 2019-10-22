@@ -68,13 +68,14 @@
                     .replace(/^[^0]*/, '')
                     .replace(/[^\d]*/g, '');
             });
-
+            /*
             $('#miktar').keydown(function (event) {
                 this.value = this.value
                     .replace(/[^\d,]/g, '')
                     .replace(new RegExp("(^[\\d]{6})[\\d]", "g"), '$1')
                     .replace(/(\,,*)\,/g, '$1')
-                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1');
+                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1')
+                    .replace(/(\,\d*)\,/g, '$1');
             });
 
             $('#miktar').keyup(function (event) {
@@ -82,7 +83,26 @@
                     .replace(/[^\d,]/g, '')
                     .replace(new RegExp("(^[\\d]{6})[\\d]", "g"), '$1')
                     .replace(/(\,,*)\,/g, '$1')
-                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1');
+                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1')
+                    .replace(/(\,\d*)\,/g, '$1');
+            });
+            */
+            $('#miktar').keydown(function (event) {
+                this.value = this.value
+                    .replace(/[^\d,]/g, '')
+                    .replace(new RegExp("(^[\\d]{6})[\\d]", "g"), '$1')
+                    .replace(/(\,,*)\,/g, '$1')
+                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1')
+                    .replace(/(\,\d*)\,/g, '$1');
+            });
+
+            $('#miktar').keyup(function (event) {
+                this.value = this.value
+                    .replace(/[^\d,]/g, '')
+                    .replace(new RegExp("(^[\\d]{6})[\\d]", "g"), '$1')
+                    .replace(/(\,,*)\,/g, '$1')
+                    .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1')
+                    .replace(/(\,\d*)\,/g, '$1');
             });
         });
 

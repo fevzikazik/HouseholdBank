@@ -101,7 +101,7 @@ namespace HouseholdBank.Controllers
 
             Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == id.ToString() && h.aktifmi == true).Single();
 
-            decimal cekilecekMiktar = Convert.ToDecimal(fc["miktar"]);
+            decimal cekilecekMiktar = Convert.ToDecimal(fc["miktarCek"]);
 
             secilenHesap.bakiye -= cekilecekMiktar;
             db.Hesap.Attach(secilenHesap);

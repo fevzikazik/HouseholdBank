@@ -48,6 +48,8 @@ C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\roslyn\vbc.rsp
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\roslyn\VBCSCompiler.exe
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Antlr3.Runtime.dll
+C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.dll
+C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\Newtonsoft.Json.dll
@@ -59,6 +61,8 @@ C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.WebPa
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.WebPages.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.WebPages.Razor.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\WebGrease.dll
+C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.xml
+C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.Helpers.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.Mvc.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\System.Web.Optimization.xml
@@ -73,8 +77,4 @@ C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdB
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csproj.CopyComplete
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.dll
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.pdb
-C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.dll
-C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.dll
-C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.xml
-C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\bin\EntityFramework.SqlServer.xml
 C:\Users\PCX\Desktop\vsprojects\HouseholdBank\HouseholdBank\obj\Debug\HouseholdBank.csprojAssemblyReference.cache
