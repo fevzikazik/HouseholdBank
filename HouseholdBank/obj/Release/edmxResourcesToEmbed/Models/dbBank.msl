@@ -13,19 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Hesap">
-      <EntityTypeMapping TypeName="dbBankModel.Hesap">
-        <MappingFragment StoreEntitySet="Hesap">
-          <ScalarProperty Name="hesapID" ColumnName="hesapID" />
-          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
-          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
-          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
-          <ScalarProperty Name="acilisTarihi" ColumnName="acilisTarihi" />
-          <ScalarProperty Name="kapanisTarihi" ColumnName="kapanisTarihi" />
-          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="HGS">
       <EntityTypeMapping TypeName="dbBankModel.HGS">
         <MappingFragment StoreEntitySet="HGS">
@@ -59,6 +46,19 @@
           <ScalarProperty Name="telefon" ColumnName="telefon" />
           <ScalarProperty Name="adres" ColumnName="adres" />
           <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hesap">
+      <EntityTypeMapping TypeName="dbBankModel.Hesap">
+        <MappingFragment StoreEntitySet="Hesap">
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="kapanisTarihi" ColumnName="kapanisTarihi" />
+          <ScalarProperty Name="acilisTarihi" ColumnName="acilisTarihi" />
+          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
+          <ScalarProperty Name="hesapID" ColumnName="hesapID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

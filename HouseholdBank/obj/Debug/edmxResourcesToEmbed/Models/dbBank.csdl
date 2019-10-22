@@ -11,18 +11,6 @@
     <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Hesap">
-    <Key>
-      <PropertyRef Name="hesapID" />
-    </Key>
-    <Property Name="hesapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
-    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="aktifmi" Type="Boolean" />
-    <Property Name="acilisTarihi" Type="DateTime" Precision="3" />
-    <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
-    <Property Name="bakiye" Type="Int32" />
-  </EntityType>
   <EntityType Name="HGS">
     <Key>
       <PropertyRef Name="hgsID" />
@@ -58,9 +46,21 @@
   </EntityType>
   <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Banka" EntityType="Self.Banka" />
-    <EntitySet Name="Hesap" EntityType="Self.Hesap" />
     <EntitySet Name="HGS" EntityType="Self.HGS" />
     <EntitySet Name="Islem" EntityType="Self.Islem" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+    <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
   </EntityContainer>
+  <EntityType Name="Hesap">
+    <Key>
+      <PropertyRef Name="hesapID" />
+    </Key>
+    <Property Name="hesapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="aktifmi" Type="Boolean" />
+    <Property Name="acilisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="bakiye" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
 </Schema>

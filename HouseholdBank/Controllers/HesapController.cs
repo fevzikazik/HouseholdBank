@@ -69,7 +69,7 @@ namespace HouseholdBank.Controllers
 
             Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == id.ToString() && h.aktifmi == true).Single();
 
-            int yatirilacakMiktar = Convert.ToInt32(fc["miktar"]);
+            decimal yatirilacakMiktar = Convert.ToDecimal(fc["miktar"]);
 
             secilenHesap.bakiye += yatirilacakMiktar;
             db.Hesap.Attach(secilenHesap);
@@ -101,7 +101,7 @@ namespace HouseholdBank.Controllers
 
             Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == id.ToString() && h.aktifmi == true).Single();
 
-            int cekilecekMiktar = Convert.ToInt32(fc["miktar"]);
+            decimal cekilecekMiktar = Convert.ToDecimal(fc["miktar"]);
 
             secilenHesap.bakiye -= cekilecekMiktar;
             db.Hesap.Attach(secilenHesap);
@@ -203,7 +203,7 @@ namespace HouseholdBank.Controllers
 
             string gonderenHesapEkNo = fc.Get("gonderenHesap");
             string alanHesapEkNo = fc.Get("alanHesap");
-            int virmanMiktar = Convert.ToInt32(fc.Get("miktar"));
+            decimal virmanMiktar = Convert.ToDecimal(fc.Get("miktar"));
 
             Hesap gonderenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == gonderenHesapEkNo && h.aktifmi == true).Single();
             Hesap alanHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == alanHesapEkNo && h.aktifmi == true).Single();
@@ -292,7 +292,7 @@ namespace HouseholdBank.Controllers
             string gonderenHesapEkNo = fc.Get("gonderenHesapEkNo");
             string aliciHesap = fc.Get("aliciHesap");
             string aliciHesapEkNo = fc.Get("aliciHesapEkNo");
-            int havaleMiktar = Convert.ToInt32(fc.Get("miktar"));
+            decimal havaleMiktar = Convert.ToDecimal(fc.Get("miktar"));
 
             Musteri aliciMus = db.Musteri.Where(m => m.hesapNo == aliciHesap).Single();
 

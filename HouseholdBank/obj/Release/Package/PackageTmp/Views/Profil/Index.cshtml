@@ -6,11 +6,11 @@
     Musteri mus = (Musteri)Session["mus"];
     dbBankEntities db = new dbBankEntities();
 
-    int toplamBakiye = 0;
+    decimal toplamBakiye = 0;
     List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
     foreach (Hesap hesap in hesapList)
     {
-        toplamBakiye += (int)hesap.bakiye;
+        toplamBakiye += Convert.ToInt32(hesap.bakiye);
     }
 }
 

@@ -20,6 +20,6 @@ namespace HouseholdBank.Models
         public Nullable<bool> aktifmi { get; set; }
         public Nullable<System.DateTime> acilisTarihi { get; set; }
         public Nullable<System.DateTime> kapanisTarihi { get; set; }
-        public Nullable<int> bakiye { get; set; }
+        public Nullable<decimal> bakiye { get; set; }
     }
 }

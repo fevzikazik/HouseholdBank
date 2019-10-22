@@ -82,8 +82,8 @@
                 {
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Yatırılacak Miktarı Girin(Tek Seferde Maksimum 999,999 ₺ Yatırabilirsiniz!):</label>
-                            <input type="text" id="miktar" name="miktar" maxlength="6" autocomplete="off" class="form-control" required title="Lütfen miktar girin!" />
+                            <label>Yatırılacak Miktarı Girin(Tek Seferde Maksimum 999.999,99 ₺ Yatırabilirsiniz!):</label>
+                            <input type="text" id="miktar" name="miktar" maxlength="9" autocomplete="off" class="form-control" required title="Lütfen miktar girin!" />
                             <label>Açıklama(Maks. 150 karakter):</label>
                             <input type="text" id="aciklama" name="aciklama" maxlength="150" autocomplete="off" class="form-control" required title="Lütfen Açıklama Girin!" />
                         </div>
@@ -125,12 +125,20 @@
 
     <script>
         $(function () {
+
+            var max = parseFloat($("#mevcutBakiye").text().replace(',', '.')).toFixed(2);
+            var virguldenOnce = parseInt($("#mevcutBakiye").text()).toFixed(0);
+            var beforeDecimal = virguldenOnce.length;
+            var afterDecimal = 2;
+
             $('#miktarCek').keydown(function (event) {
                 this.value = this.value
-                    .replace(/[0]*/, '')
-                    .replace(/[^\d]*/g, '');
-                var max = parseInt($("#mevcutBakiye").text());
-                var min = 0
+                    .replace(/[^\d,]/g, '')
+                    .replace(new RegExp("(^[\\d]{" + beforeDecimal + "})[\\d]", "g"), '$1')
+                    .replace(/(\,,*)\,/g, '$1')
+                    .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
+                //alert(max)
+                max = max.replace('.', ',');
                 if ($(this).val() > max) {
                     $(this).val(max);
                 }
@@ -138,10 +146,11 @@
 
             $('#miktarCek').keyup(function (event) {
                 this.value = this.value
-                    .replace(/[0]*/, '')
-                    .replace(/[^\d]*/g, '');
-                var max = parseInt($("#mevcutBakiye").text());
-                var min = 0
+                    .replace(/[^\d,]/g, '')
+                    .replace(new RegExp("(^[\\d]{" + beforeDecimal + "})[\\d]", "g"), '$1')
+                    .replace(/(\,,*)\,/g, '$1')
+                    .replace(new RegExp("(\\,[\\d]{" + afterDecimal + "}).", "g"), '$1');
+                max = max.replace('.',',');
                 if ($(this).val() > max) {
                     $(this).val(max);
                 }
