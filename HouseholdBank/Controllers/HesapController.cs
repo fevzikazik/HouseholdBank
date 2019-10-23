@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -69,7 +70,7 @@ namespace HouseholdBank.Controllers
 
             Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == id.ToString() && h.aktifmi == true).Single();
 
-            decimal yatirilacakMiktar = Convert.ToDecimal(fc["miktar"]);
+            decimal yatirilacakMiktar = Convert.ToDecimal(fc["miktar"], new CultureInfo("tr-TR"));
 
             secilenHesap.bakiye += yatirilacakMiktar;
             db.Hesap.Attach(secilenHesap);
@@ -101,7 +102,7 @@ namespace HouseholdBank.Controllers
 
             Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == id.ToString() && h.aktifmi == true).Single();
 
-            decimal cekilecekMiktar = Convert.ToDecimal(fc["miktarCek"]);
+            decimal cekilecekMiktar = Convert.ToDecimal(fc["miktarCek"], new CultureInfo("tr-TR"));
 
             secilenHesap.bakiye -= cekilecekMiktar;
             db.Hesap.Attach(secilenHesap);
@@ -203,7 +204,7 @@ namespace HouseholdBank.Controllers
 
             string gonderenHesapEkNo = fc.Get("gonderenHesap");
             string alanHesapEkNo = fc.Get("alanHesap");
-            decimal virmanMiktar = Convert.ToDecimal(fc.Get("miktar"));
+            decimal virmanMiktar = Convert.ToDecimal(fc.Get("miktar"), new CultureInfo("tr-TR"));
 
             Hesap gonderenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == gonderenHesapEkNo && h.aktifmi == true).Single();
             Hesap alanHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == alanHesapEkNo && h.aktifmi == true).Single();
@@ -292,7 +293,7 @@ namespace HouseholdBank.Controllers
             string gonderenHesapEkNo = fc.Get("gonderenHesapEkNo");
             string aliciHesap = fc.Get("aliciHesap");
             string aliciHesapEkNo = fc.Get("aliciHesapEkNo");
-            decimal havaleMiktar = Convert.ToDecimal(fc.Get("miktar"));
+            decimal havaleMiktar = Convert.ToDecimal(fc.Get("miktar"), new CultureInfo("tr-TR"));
 
             Musteri aliciMus = db.Musteri.Where(m => m.hesapNo == aliciHesap).Single();
 
