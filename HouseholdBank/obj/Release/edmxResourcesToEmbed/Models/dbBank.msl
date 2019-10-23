@@ -13,16 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HGS">
-      <EntityTypeMapping TypeName="dbBankModel.HGS">
-        <MappingFragment StoreEntitySet="HGS">
-          <ScalarProperty Name="hgsID" ColumnName="hgsID" />
-          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
-          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
-          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Islem">
       <EntityTypeMapping TypeName="dbBankModel.Islem">
         <MappingFragment StoreEntitySet="Islem">
@@ -59,6 +49,17 @@
           <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
           <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
           <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HGS">
+      <EntityTypeMapping TypeName="dbBankModel.HGS">
+        <MappingFragment StoreEntitySet="HGS">
+          <ScalarProperty Name="plaka" ColumnName="plaka" />
+          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+          <ScalarProperty Name="hgsID" ColumnName="hgsID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

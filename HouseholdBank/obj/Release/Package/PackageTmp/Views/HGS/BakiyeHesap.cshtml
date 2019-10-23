@@ -1,0 +1,52 @@
+﻿@using HouseholdBank.Models;
+@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Yüklenecek Hesap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Musteri mus = (Musteri)Session["mus"];
+    dbBankEntities db = new dbBankEntities();
+
+    int hgsID = (int)ViewBag.hgsID;
+    HGS secilenHgs = db.HGS.Where(h => h.hgsID == hgsID).Single();
+
+
+    List<Hesap> hesapList = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true && h.bakiye >0).ToList();
+
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <br />
+            <h2>Seçilen HGS No: @secilenHgs.hgsID <br />Araç Plaka: @secilenHgs.plaka</h2>
+            <br />
+            <h2>Bakiye Yüklenecek Hesap Ek No Seçin:</h2>
+            @if (hesapList.Count > 0)
+            {
+                using (Html.BeginForm("BakiyeYukle", "HGS", FormMethod.Post))
+                {
+                    @Html.Hidden("secilenHgsID", secilenHgs.hgsID)
+                    <div class="form-group">
+                        <select class="form-control" id="input-select" name="secilenHesap">
+                            @foreach (Hesap hesap in hesapList)
+                            {
+                                <option name="secilenHesap" value=@Convert.ToString(hesap.hesapEkNo)>Hesap Ek No: @hesap.hesapEkNo - @hesap.bakiye TL</option>
+                            }
+
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Devam Et</button>
+                    <br />
+                }
+            }
+            else
+            {
+                <h2>İşlem yapmak için bakiyeniz yetersiz!</h2>
+            }
+        </div>
+    </div>
+
+</div>

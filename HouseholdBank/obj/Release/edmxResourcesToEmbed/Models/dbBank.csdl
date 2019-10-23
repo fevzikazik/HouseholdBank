@@ -11,15 +11,6 @@
     <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="HGS">
-    <Key>
-      <PropertyRef Name="hgsID" />
-    </Key>
-    <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="bakiye" Type="Int32" />
-    <Property Name="aktifmi" Type="Boolean" />
-  </EntityType>
   <EntityType Name="Islem">
     <Key>
       <PropertyRef Name="islemID" />
@@ -46,10 +37,10 @@
   </EntityType>
   <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Banka" EntityType="Self.Banka" />
-    <EntitySet Name="HGS" EntityType="Self.HGS" />
     <EntitySet Name="Islem" EntityType="Self.Islem" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" />
     <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
+    <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
   </EntityContainer>
   <EntityType Name="Hesap">
     <Key>
@@ -61,6 +52,16 @@
     <Property Name="aktifmi" Type="Boolean" />
     <Property Name="acilisTarihi" Type="DateTime" Precision="3" />
     <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
-    <Property Name="bakiye" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
+  </EntityType>
+  <EntityType Name="HGS">
+    <Key>
+      <PropertyRef Name="hgsID" />
+    </Key>
+    <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="aktifmi" Type="Boolean" />
+    <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -16,7 +16,8 @@ namespace HouseholdBank.Models
     {
         public int hgsID { get; set; }
         public string musTCKN { get; set; }
-        public Nullable<int> bakiye { get; set; }
+        public Nullable<decimal> bakiye { get; set; }
         public Nullable<bool> aktifmi { get; set; }
+        public string plaka { get; set; }
     }
 }

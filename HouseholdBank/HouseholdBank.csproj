@@ -280,6 +280,8 @@
     <Content Include="Views\Hesap\HavaleAlan.cshtml" />
     <Content Include="Views\Hesap\HavaleGonderen.cshtml" />
     <Content Include="Views\HGS\Index.cshtml" />
+    <Content Include="Views\HGS\BakiyeHesap.cshtml" />
+    <Content Include="Views\HGS\BakiyeYukle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

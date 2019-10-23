@@ -18,10 +18,10 @@
         }
     }
 
-    HGS musHgs = null;
+    List<HGS> musHgsList = null;
     if (isUye)
     {
-        musHgs = hgsListesi.Where(h => h.musTCKN == mus.tcKimlikNo).Single();
+        musHgsList = hgsListesi.Where(h => h.musTCKN == mus.tcKimlikNo && h.aktifmi == true).ToList();
     }
 }
 
@@ -33,45 +33,35 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="row justify-content-center" style="margin-top:2em">
-                    <h2>
-                        HGS Durumu: @if (musHgs.aktifmi == true)
-                        {<label>Aktif</label>}
-                        <br />  HGS Bakiye: @musHgs.bakiye TL
-                    </h2>
+                    <h2>Aktif HGS Listesi(Tüm Araçlar):</h2>
+                    <br />
+                    <br />
+                        <div class="list list-group">
+
+                            @foreach (HGS hgs in musHgsList)
+                            {
+                                <p class="list-group-item list-group-item-action list-group-item-primary">
+                                    HGS No: @hgs.hgsID <br /> Plaka No: @hgs.plaka <br /> Bakiye: @hgs.bakiye TL
+                                
+                                <a href="@Url.Action("BakiyeHesap","HGS", new { id= hgs.hgsID })"><button class="btn btn-info">Bakiye Yükle</button></a>
+                                @if (hgs.bakiye == 0){
+                                    <a href="@Url.Action("IptalEt","HGS", new { id= hgs.hgsID })"><button class="btn btn-danger">Üyelik Sonlandır</button></a>
+                                }
+                                </p>
+                                <br />
+                            }
+
+                        </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="justify-content-center" style="margin-top:2em">
-                    <h2>HGS Islemleri</h2>
+                    <h2>HGS İşlemleri:</h2>
                     <p class="margin-top-s">
                         <div class="vertical-menu">
-                            <a href="@Url.Action("BakiyeGuncelle","HGS")" data-toggle="modal" data-target="#HGSYukle">Bakiye Yükle</a>
-                            <a href="@Url.Action("IptalEt","HGS", new { id= musHgs.hgsID })">HGS İptal Et</a>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#YeniUyelik">Yeni Üyelik Oluştur</button>
                         </div>
                     </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="HGSYukle" tabindex="-1" role="dialog" aria-labelledby="">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">HGS Yükle - Mevcut HGS Bakiye: @musHgs.bakiye</h4>
-                    </div>
-                    @using (Html.BeginForm("BakiyeGuncelle", "HGS", new { @id = musHgs.hgsID }, FormMethod.Post))
-                    {
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Yatırılacak Miktarı Girin(Tek Seferde Maksimum 999,999 ₺ Yatırabilirsiniz!):</label>
-                                <input type="text" id="miktar" name="miktar" maxlength="6" class="form-control" autocomplete="off" required title="Lütfen miktar girin!" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
-                            <button type="submit" class="btn btn-success">Bakiye Yükle!</button>
-                        </div>
-                    }
                 </div>
             </div>
         </div>
@@ -82,10 +72,35 @@
 
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h2>Aktif HGS üyeliğiniz bulunmamaktadır. <br /> Satın Almak İçin Lütfen Tıklayın!</h2>
+                <h2>Aktif HGS üyeliğiniz bulunmamaktadır. <br /> Üyelik İçin Lütfen Tıklayın!</h2>
 
-                <a href="@Url.Action("UyelikOlustur","HGS")"><button class="btn btn-success">Satın Al</button></a>
+                <button class="btn btn-success" data-toggle="modal" data-target="#YeniUyelik">Yeni Üyelik Oluştur</button>
             </div>
         </div>
     }
+</div>
+
+
+
+<div class="modal fade" id="YeniUyelik" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">HGS Üyelik Oluştur</h4>
+            </div>
+            @using (Html.BeginForm("UyelikOlustur", "HGS", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Araç Plaka Girin:</label>
+                        <input type="text" id="plaka" name="plaka" maxlength="10" class="form-control" autocomplete="off" required title="Lütfen plaka girin!" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-success">Üyelik Oluştur</button>
+                </div>
+            }
+        </div>
+    </div>
 </div>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -56,8 +58,9 @@ namespace HouseholdBank.Controllers
             }
         }
 
-        // GET: HGS/UyelikOlustur
-        public async Task<ActionResult> UyelikOlustur()
+        // POST: HGS/UyelikOlustur
+        [HttpPost]
+        public async Task<ActionResult> UyelikOlustur(FormCollection collection)
         {
             if (Session["mus"] == null)
                 return RedirectToAction("Index", "Login");
@@ -83,6 +86,7 @@ namespace HouseholdBank.Controllers
                     hgs.musTCKN = mus.tcKimlikNo;
                     hgs.bakiye = 0;
                     hgs.aktifmi = true;
+                    hgs.plaka = collection.Get("plaka");
 
                     var serializedProduct = JsonConvert.SerializeObject(hgs);
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
@@ -102,7 +106,7 @@ namespace HouseholdBank.Controllers
         
         // POST: HGS/BakiyeGuncelle/41
         [HttpPost]
-        public async Task<ActionResult> BakiyeGuncelle(int id, FormCollection collection)
+        public async Task<ActionResult> BakiyeGuncelle(FormCollection collection)
         {
             if (Session["mus"] == null)
                 return RedirectToAction("Index", "Login");
@@ -122,11 +126,20 @@ namespace HouseholdBank.Controllers
                     
                     dbBankEntities db = new dbBankEntities();
                     Musteri mus = (Musteri)Session["mus"];
-                    
+
+                    decimal yuklenecekMiktar = Convert.ToDecimal(collection.Get("miktar"), new CultureInfo("tr-TR"));
+                    string secilenHesapEkNo = collection.Get("secilenHesap");
+                    Hesap secilenHesap = db.Hesap.Where(h => h.musTCKN == mus.tcKimlikNo && h.hesapEkNo == secilenHesapEkNo && h.aktifmi == true).Single();
+
+                    secilenHesap.bakiye -= yuklenecekMiktar;
+                    db.Hesap.Attach(secilenHesap);
+                    db.Entry(secilenHesap).State = EntityState.Modified;
+
                     HGS hgs = null;
+                    
+                    int secilenHGSID = Convert.ToInt32(collection.Get("secilenHGSID"));
 
-
-                    using (var resultt = await client.GetAsync("api/HGS/" + id))
+                    using (var resultt = await client.GetAsync("api/HGS/" + secilenHGSID))
                     {
                         if (resultt.IsSuccessStatusCode)
                         {
@@ -136,16 +149,25 @@ namespace HouseholdBank.Controllers
                             
                         }
                     }
-                    
-                    hgs.bakiye += Convert.ToInt32(collection.Get("miktar"));
+
+                    Islem isl = new Islem();
+                    isl.hesapNo = mus.hesapNo;
+                    isl.hesapEkNo = secilenHesap.hesapEkNo;
+                    isl.islemTipi = "HGS Yüklemesi";
+                    isl.tarih = DateTime.Now;
+                    isl.aciklama =  yuklenecekMiktar + " TL " + hgs.plaka + " Plakalı Araç İçin HGS Yüklemesi Yapildi!";
+                    db.Islem.Add(isl);
+                    db.SaveChanges();
+
+                    hgs.bakiye += yuklenecekMiktar;
 
                     var serializedProduct = JsonConvert.SerializeObject(hgs);
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
-                    var result = await client.PutAsync("api/HGS/" + id, content);
+                    var result = await client.PutAsync("api/HGS/" + secilenHGSID, content);
                     if (result.IsSuccessStatusCode)
                         return RedirectToAction("Index");
 
-                    return RedirectToAction("BakiyeGuncelle", id);
+                    return RedirectToAction("BakiyeGuncelle", secilenHGSID);
                 }
             }
             catch (Exception ex)
@@ -179,6 +201,29 @@ namespace HouseholdBank.Controllers
             {
                 throw new Exception("Hata Oluştu" + ex.Message);
             }
+        }
+
+        public ActionResult BakiyeHesap(int id)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            ViewBag.hgsID = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BakiyeYukle(FormCollection fc)
+        {
+            if (Session["mus"] == null)
+                return RedirectToAction("Index", "Login");
+
+            int secilenHGSID = Convert.ToInt32(fc.Get("secilenHgsID"));
+            string secilenHesap = fc.Get("secilenHesap");
+            ViewBag.secilenHGSID = secilenHGSID;
+            ViewBag.secilenHesap = secilenHesap;
+
+            return View();
         }
     }
 }

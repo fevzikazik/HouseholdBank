@@ -122,6 +122,18 @@
                     .replace(new RegExp("(\\,[\\d]{2}).", "g"), '$1')
                     .replace(/(\,\d*)\,/g, '$1');
             });
+
+            $('#plaka').keydown(function (event) {
+                this.value = this.value
+                    .replace(/[ ]*/, '')
+                    .replace(/[^a-zA-Z[0-9]]*/g, '');
+            });
+            
+            $('#plaka').keyup(function (event) {
+                this.value = this.value
+                    .replace(/[ ]*/, '')
+                    .replace(/[^a-zA-Z[0-9]]*/g, '');
+            });
         });
 
     </script>
