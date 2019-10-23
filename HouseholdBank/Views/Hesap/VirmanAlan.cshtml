@@ -24,9 +24,9 @@
             <br />
             <h2>Gonderen Hesap Ek No: <br /> @mus.hesapNo - @gonderenHesap <br /> Bakiye: @gonderenH.bakiye TL</h2>
             <br />
-            <h2>Alan Hesap Ek No:</h2>
             @if (hesapList.Count > 0)
             {
+                <h2>Alan Hesap Ek No:</h2>
                 using (Html.BeginForm("Virman", "Hesap", FormMethod.Post))
                 {
                     @Html.Hidden("gonderenHesap", gonderenHesap)
