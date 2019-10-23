@@ -34,12 +34,26 @@
 
             $('#tamAdi').keydown(function (event) {
                 this.value = this.value
+                    .replace(/[ ]*/, '')
                     .replace(/[^a-zA-ZığüçşöİĞÜÇŞÖ ]*/g, '');
             });
 
             $('#tamAdi').keyup(function (event) {
                 this.value = this.value
+                    .replace(/[ ]*/, '')
                     .replace(/[^a-zA-ZığüçşöİĞÜÇŞÖ ]*/g, '');
+            });
+
+            $('#adres').keydown(function (event) {
+                this.value = this.value
+                    .replace(/[ ]*/, '')
+                    .replace(/[^[0-9]a-zA-ZığüçşöİĞÜÇŞÖ.:\/ ]*/g, '');
+            });
+
+            $('#adres').keyup(function (event) {
+                this.value = this.value
+                    .replace(/[ ]*/, '')
+                    .replace(/[^[0-9]a-zA-ZığüçşöİĞÜÇŞÖ.:\/ ]* /g, '');
             });
 
             $('#sifre').keydown(function (event) {
