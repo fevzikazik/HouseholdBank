@@ -282,6 +282,7 @@
     <Content Include="Views\HGS\Index.cshtml" />
     <Content Include="Views\HGS\BakiyeHesap.cshtml" />
     <Content Include="Views\HGS\BakiyeYukle.cshtml" />
+    <Content Include="Views\HGS\BakiyeBosaltHesap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

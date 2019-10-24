@@ -11,17 +11,6 @@
     <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Islem">
-    <Key>
-      <PropertyRef Name="islemID" />
-    </Key>
-    <Property Name="islemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="hesapNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
-    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
-    <Property Name="aciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="tarih" Type="DateTime" Precision="3" />
-    <Property Name="islemTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Musteri">
     <Key>
       <PropertyRef Name="tcKimlikNo" />
@@ -37,10 +26,10 @@
   </EntityType>
   <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Banka" EntityType="Self.Banka" />
-    <EntitySet Name="Islem" EntityType="Self.Islem" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" />
     <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
     <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
+    <EntitySet Name="Islem" EntityType="dbBankModel.Islem" />
   </EntityContainer>
   <EntityType Name="Hesap">
     <Key>
@@ -63,5 +52,17 @@
     <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
     <Property Name="aktifmi" Type="Boolean" />
     <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Islem">
+    <Key>
+      <PropertyRef Name="islemID" />
+    </Key>
+    <Property Name="islemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hesapNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="hesapEkNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="tarih" Type="DateTime" Precision="3" />
+    <Property Name="islemTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="platform" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -82,6 +82,7 @@ namespace HouseholdBank.Controllers
             islem.islemTipi = "Para Yatırma";
             islem.tarih = DateTime.Now;
             islem.aciklama = yatirilacakMiktar + " TL Para Yatırıldı - " + fc["aciklama"];
+            islem.platform = "web";
 
             db.Islem.Add(islem);
             db.SaveChanges();
@@ -114,6 +115,7 @@ namespace HouseholdBank.Controllers
             islem.islemTipi = "Para Çekme";
             islem.tarih = DateTime.Now;
             islem.aciklama = cekilecekMiktar + " TL Para Çekildi - " + fc["aciklama"];
+            islem.platform = "web";
 
             db.Islem.Add(islem);
             db.SaveChanges();
@@ -222,6 +224,7 @@ namespace HouseholdBank.Controllers
             gonderenIslem.islemTipi = "Virman";
             gonderenIslem.tarih = DateTime.Now;
             gonderenIslem.aciklama = virmanMiktar + " TL " + alanHesapEkNo + " EkNolu Hesaba Virman Yapildi!";
+            gonderenIslem.platform = "web";
             db.Islem.Add(gonderenIslem);
 
             Islem alanIslem = new Islem();
@@ -230,6 +233,7 @@ namespace HouseholdBank.Controllers
             alanIslem.islemTipi = "Virman";
             alanIslem.tarih = DateTime.Now;
             alanIslem.aciklama = virmanMiktar + " TL " + gonderenHesapEkNo + " EkNolu Hesabtan Virman Geldi!";
+            alanIslem.platform = "web";
             db.Islem.Add(alanIslem);
 
             db.SaveChanges();
@@ -313,6 +317,7 @@ namespace HouseholdBank.Controllers
             gonderenIslem.islemTipi = "Havale";
             gonderenIslem.tarih = DateTime.Now;
             gonderenIslem.aciklama = havaleMiktar + " TL " + aliciHesap + " Nolu Müşterinin " + aliciHesapEkNo  + " EkNolu Hesabına Havale Yapildi!";
+            gonderenIslem.platform = "web";
             db.Islem.Add(gonderenIslem);
 
             Islem alanIslem = new Islem();
@@ -321,6 +326,7 @@ namespace HouseholdBank.Controllers
             alanIslem.islemTipi = "Havale";
             alanIslem.tarih = DateTime.Now;
             alanIslem.aciklama = havaleMiktar + " TL " + mus.hesapNo + " Nolu Müşteriden " + gonderenHesapEkNo + " EkNolu Hesabından Havale Geldi!";
+            alanIslem.platform = "web";
             db.Islem.Add(alanIslem);
 
             db.SaveChanges();

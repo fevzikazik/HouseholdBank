@@ -20,5 +20,6 @@ namespace HouseholdBank.Models
         public string aciklama { get; set; }
         public Nullable<System.DateTime> tarih { get; set; }
         public string islemTipi { get; set; }
+        public string platform { get; set; }
     }
 }

@@ -43,6 +43,7 @@
     <Property Name="aciklama" Type="nvarchar" MaxLength="150" />
     <Property Name="tarih" Type="datetime" />
     <Property Name="islemTipi" Type="nvarchar" MaxLength="50" />
+    <Property Name="platform" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Musteri">
     <Key>

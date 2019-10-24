@@ -13,18 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Islem">
-      <EntityTypeMapping TypeName="dbBankModel.Islem">
-        <MappingFragment StoreEntitySet="Islem">
-          <ScalarProperty Name="islemID" ColumnName="islemID" />
-          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
-          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
-          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
-          <ScalarProperty Name="tarih" ColumnName="tarih" />
-          <ScalarProperty Name="islemTipi" ColumnName="islemTipi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Musteri">
       <EntityTypeMapping TypeName="dbBankModel.Musteri">
         <MappingFragment StoreEntitySet="Musteri">
@@ -60,6 +48,19 @@
           <ScalarProperty Name="bakiye" ColumnName="bakiye" />
           <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
           <ScalarProperty Name="hgsID" ColumnName="hgsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Islem">
+      <EntityTypeMapping TypeName="dbBankModel.Islem">
+        <MappingFragment StoreEntitySet="Islem">
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="islemTipi" ColumnName="islemTipi" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+          <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
+          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+          <ScalarProperty Name="islemID" ColumnName="islemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

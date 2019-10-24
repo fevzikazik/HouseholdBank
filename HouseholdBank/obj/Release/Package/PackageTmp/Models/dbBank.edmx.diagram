@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="cd3eded12c16431e836661f39b76aa57" Name="Diagram1">
         <EntityTypeShape EntityType="dbBankModel.Banka" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankModel.Islem" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankModel.Musteri" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankModel.Hesap" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="dbBankModel.HGS" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbBankModel.Islem" Width="1.5" PointX="0.5" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

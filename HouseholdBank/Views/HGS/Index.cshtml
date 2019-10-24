@@ -26,42 +26,50 @@
 }
 
 
-<div class="container" style="background-color:gainsboro;border-radius:15px">
+<div class="container" style="background-color:gainsboro;border-radius:15px;padding:3em;max-width:600px">
 
     @if (isUye)
     {
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row justify-content-center" style="margin-top:2em">
-                    <h2>Aktif HGS Listesi(Tüm Araçlar):</h2>
-                    <br />
-                    <br />
-                        <div class="list list-group">
+        <div class="row justify-content-center" style="margin-top:2em">
+            <div class="col-md-8">
+                <h2>Yeni HGS Kaydı:</h2>
+                <p class="margin-top-s">
+                    <div class="vertical-menu">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#YeniUyelik">Yeni Üyelik Oluştur</button>
+                    </div>
+                </p>
+                <br />
+                <h2>Aktif HGS Listesi <br />(Tüm Araçlar):</h2>
+                <br />
+                <div class="list list-group">
 
-                            @foreach (HGS hgs in musHgsList)
+                    @foreach (HGS hgs in musHgsList)
+                    {
+                        <div class="list-group-item list-group-item-action list-group-item-primary" style="min-width:300px">
+                            HGS No: @hgs.hgsID <br /> Plaka No: @hgs.plaka <br /> Bakiye: @hgs.bakiye TL
+
+
+                            <form class="border-0" action="@Url.Action("BakiyeHesap","HGS")" method="POST">
+                                @Html.Hidden("id", hgs.hgsID)
+                                <button type="submit" class="btn btn-success">Bakiye Yükle</button>
+                            </form>
+
+                            @if (hgs.bakiye >= 1)
                             {
-                                <p class="list-group-item list-group-item-action list-group-item-primary">
-                                    HGS No: @hgs.hgsID <br /> Plaka No: @hgs.plaka <br /> Bakiye: @hgs.bakiye TL
-                                
-                                <a href="@Url.Action("BakiyeHesap","HGS", new { id= hgs.hgsID })"><button class="btn btn-info">Bakiye Yükle</button></a>
-                                @if (hgs.bakiye == 0){
-                                    <a href="@Url.Action("IptalEt","HGS", new { id= hgs.hgsID })"><button class="btn btn-danger">Üyelik Sonlandır</button></a>
-                                }
-                                </p>
-                                <br />
+                                <form class="border-0" action="@Url.Action("BakiyeBosaltHesap","HGS")" method="POST">
+                                    @Html.Hidden("id", hgs.hgsID)
+                                    <button type="submit" class="btn btn-info">Bakiye Boşalt</button>
+                                </form>
                             }
 
+                            @if (hgs.bakiye == 0)
+                            {
+                                <button onclick="location.href='@Url.Action("IptalEt","HGS", new { id= hgs.hgsID })'" class="btn btn-danger">Üyelik Sonlandır</button>
+                            }
                         </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="justify-content-center" style="margin-top:2em">
-                    <h2>HGS İşlemleri:</h2>
-                    <p class="margin-top-s">
-                        <div class="vertical-menu">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#YeniUyelik">Yeni Üyelik Oluştur</button>
-                        </div>
-                    </p>
+                        <br />
+                    }
+
                 </div>
             </div>
         </div>
