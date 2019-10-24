@@ -54,6 +54,7 @@
 
         $('#miktarHGS').keydown(function (event) {
             this.value = this.value
+                .replace(/[,]*/, '')
                 .replace(/[0]*/, '')
                 .replace(/[^\d,]/g, '')
                 .replace(new RegExp("(^[\\d]{" + beforeDecimal + "})[\\d]", "g"), '$1')
@@ -62,8 +63,17 @@
                 .replace(/(\,\d*)\,/g, '$1');
             max = max.replace('.', ',');
             if ($(this).val().length >= virguldenOnce.length) {
-                if ($(this).val() > max) {
-                    $(this).val(max);
+                if ($(this).val().indexOf(",") == -1) {
+                    if ($(this).val() > max) {
+                        $(this).val(max);
+                    }
+                }
+                else { // virgül varsa
+                    if ($(this).val().substr(0, $(this).val().indexOf(',')) == virguldenOnce && $(this).val().substr($(this).val().indexOf(',') + 1, $(this).val().length) > max.substr($(this).val().indexOf(',') + 1, max.length)) {
+                        if ($(this).val() > max) {
+                            $(this).val(max);
+                        }
+                    }
                 }
             }
         });
@@ -79,8 +89,17 @@
                 .replace(/(\,\d*)\,/g, '$1');
             max = max.replace('.', ',');
             if ($(this).val().length >= virguldenOnce.length) {
-                if ($(this).val() > max) {
-                    $(this).val(max);
+                if ($(this).val().indexOf(",") == -1) {
+                    if ($(this).val() > max) {
+                        $(this).val(max);
+                    }
+                }
+                else { // virgül varsa
+                    if ($(this).val().substr(0, $(this).val().indexOf(',')) == virguldenOnce && $(this).val().substr($(this).val().indexOf(',') + 1, $(this).val().length) > max.substr($(this).val().indexOf(',') + 1, max.length)) {
+                        if ($(this).val() > max) {
+                            $(this).val(max);
+                        }
+                    }
                 }
             }
         });
