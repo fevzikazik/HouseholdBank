@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HesapController.cs" />
+    <Compile Include="Controllers\KrediController.cs" />
     <Compile Include="Controllers\HGSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -163,6 +164,8 @@
     <Compile Include="Models\Islem.cs">
       <DependentUpon>dbBank.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Kredi.cs" />
+    <Compile Include="Models\KrediResponse.cs" />
     <Compile Include="Models\Musteri.cs">
       <DependentUpon>dbBank.tt</DependentUpon>
     </Compile>
@@ -283,6 +286,8 @@
     <Content Include="Views\HGS\BakiyeHesap.cshtml" />
     <Content Include="Views\HGS\BakiyeYukle.cshtml" />
     <Content Include="Views\HGS\BakiyeBosaltHesap.cshtml" />
+    <Content Include="Views\Kredi\KrediSonuc.cshtml" />
+    <Content Include="Views\Kredi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

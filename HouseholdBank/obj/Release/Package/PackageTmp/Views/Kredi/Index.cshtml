@@ -1,0 +1,118 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="background-color:gainsboro;border-radius:15px;max-width:600px">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+                <form action="/Kredi/KrediSonuc" method="post">
+                    <div class="container">
+
+                        <h1>Kredi Hesapla</h1>
+                        <p>Lütfen Kredi Hesaplama için gerekli bilgileri girin!</p>
+                        <hr>
+                        <div class="form-group">
+                            <label for="krediMiktari"><b>Kredi Miktarı:</b></label>
+                            <input id="krediMiktari" type="number" name="krediMiktari" required="required" min="1000" placeholder="Miktar Girin (Min. 1000 Lira)" autocomplete="off" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="yas"><b>Yaşınız:</b></label>
+                            <input id="yas" type="text" name="yas" required="required" placeholder="Yaş Girin" min="18" autocomplete="off" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="aldigi_kredi_sayi"><b>Aldığınız Kredi Sayısı:</b></label>
+                            <input id="aldigi_kredi_sayi" type="text" name="aldigi_kredi_sayi" required="required" min="0" max="100" placeholder="Kredi Sayısı Girin" autocomplete="off" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="yas"><b>Ev Durumu:</b></label>
+                            <select class="form-control" id="input-select" name="evDurumu">
+                                <option name="evDurumu" value="evsahibi">Ev Sahibi</option>
+                                <option name="evDurumu" value="kiraci">Kiracı</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="yas"><b>Telefon Durumu:</b></label>
+                            <select class="form-control" id="input-select" name="telefonDurumu">
+                                <option name="telefonDurumu" value="var">Var</option>
+                                <option name="telefonDurumu" value="yok">Yok</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Kredi Durumunu Hesapla</button>
+                            <br />
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#krediMiktari').keydown(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100000) {
+                $(this).val(100000);
+            }
+        });
+
+        $('#krediMiktari').keyup(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100000) {
+                $(this).val(100000);
+            }
+        });
+
+        $('#yas').keydown(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100) {
+                $(this).val(100);
+            }
+        });
+
+        $('#yas').keyup(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100) {
+                $(this).val(100);
+            }
+        });
+
+
+
+        $('#aldigi_kredi_sayi').keydown(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100) {
+                $(this).val(100);
+            }
+        });
+
+        $('#aldigi_kredi_sayi').keyup(function (event) {
+            this.value = this.value
+                .replace(/[0]*/, '')
+                .replace(/[^\d]/g, '');
+            if ($(this).val() > 100) {
+                $(this).val(100);
+            }
+        });
+
+    });
+
+</script>

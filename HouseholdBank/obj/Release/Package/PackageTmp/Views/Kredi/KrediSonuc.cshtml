@@ -1,0 +1,45 @@
+﻿@using HouseholdBank.Models;
+@{
+    ViewBag.Title = "KrediSonuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IList<KrediResponse> sonuclar = (IList<KrediResponse>)ViewBag.sonuclar;
+}
+
+
+
+    <div class="container" style="background-color:beige;border-radius:15px;padding:3em;max-width:800px">
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+
+                <h2>Kredi Sonuçları:</h2>
+                <br />
+                <h4>Modellerin Yüzde 75 üstü olanlar için kredi ver karar verilir.(>= 75)</h4>
+                <br />
+                <br />
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Oran(%)</th>
+                            <th>Sonuç(>=75)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KrediResponse resp in sonuclar)
+                        {
+                            <tr>
+                                <td>@resp.Model</td>
+                                <td>@resp.Oran</td>
+                                <td>@if (@resp.Oran >= 75) { <label>Kredi Ver</label> } else { <label><b>Verme</b></label> }</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
