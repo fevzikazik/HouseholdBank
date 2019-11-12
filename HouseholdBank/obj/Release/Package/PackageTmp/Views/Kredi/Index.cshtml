@@ -21,12 +21,12 @@
 
                         <div class="form-group">
                             <label for="yas"><b>Yaşınız:</b></label>
-                            <input id="yas" type="text" name="yas" required="required" placeholder="Yaş Girin" min="18" autocomplete="off" class="form-control">
+                            <input id="yas" type="number" name="yas" required="required" placeholder="Yaş Girin" min="18" autocomplete="off" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="aldigi_kredi_sayi"><b>Aldığınız Kredi Sayısı:</b></label>
-                            <input id="aldigi_kredi_sayi" type="text" name="aldigi_kredi_sayi" required="required" min="0" max="100" placeholder="Kredi Sayısı Girin" autocomplete="off" class="form-control">
+                            <input id="aldigi_kredi_sayi" type="number" name="aldigi_kredi_sayi" required="required" min="0" max="100" placeholder="Kredi Sayısı Girin" autocomplete="off" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -97,7 +97,6 @@
 
         $('#aldigi_kredi_sayi').keydown(function (event) {
             this.value = this.value
-                .replace(/[0]*/, '')
                 .replace(/[^\d]/g, '');
             if ($(this).val() > 100) {
                 $(this).val(100);
@@ -106,7 +105,6 @@
 
         $('#aldigi_kredi_sayi').keyup(function (event) {
             this.value = this.value
-                .replace(/[0]*/, '')
                 .replace(/[^\d]/g, '');
             if ($(this).val() > 100) {
                 $(this).val(100);
