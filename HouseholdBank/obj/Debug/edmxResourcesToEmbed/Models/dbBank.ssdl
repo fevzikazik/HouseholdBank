@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Banka">
-    <Key>
-      <PropertyRef Name="bankaID" />
-    </Key>
-    <Property Name="bankaID" Type="int" Nullable="false" />
-    <Property Name="adi" Type="nvarchar" MaxLength="50" />
-    <Property Name="slogan" Type="nvarchar" MaxLength="150" />
-    <Property Name="adres" Type="nvarchar" MaxLength="150" />
-    <Property Name="tel" Type="nvarchar" MaxLength="20" />
-    <Property Name="il" Type="nvarchar" MaxLength="20" />
-  </EntityType>
   <EntityType Name="Hesap">
     <Key>
       <PropertyRef Name="hesapID" />
@@ -59,7 +48,6 @@
     <Property Name="hesapNo" Type="nvarchar" MaxLength="9" Nullable="false" />
   </EntityType>
   <EntityContainer Name="dbBankModelStoreContainer">
-    <EntitySet Name="Banka" EntityType="Self.Banka" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HGS" EntityType="Self.HGS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Islem" EntityType="Self.Islem" Schema="dbo" store:Type="Tables" />

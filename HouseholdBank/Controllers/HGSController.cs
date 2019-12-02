@@ -16,7 +16,7 @@ namespace HouseholdBank.Controllers
 {
     public class HGSController : Controller
     {
-        string Baseurl = "https://householdwebapi.azurewebsites.net/";
+        string Baseurl = "https://householdapi.azurewebsites.net/";
         //string Baseurl = "http://localhost:57619/";
 
         // GET: HGS
@@ -37,7 +37,7 @@ namespace HouseholdBank.Controllers
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                     IList<HGS> hgsListesi = null;
-                    using (var result = await client.GetAsync("api/HGS"))
+                    using (var result = await client.GetAsync("api/HGS/Get"))
                     {
                         if (result.IsSuccessStatusCode)
                         {
@@ -90,7 +90,7 @@ namespace HouseholdBank.Controllers
 
                     var serializedProduct = JsonConvert.SerializeObject(hgs);
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
-                    var result = await client.PostAsync("api/HGS", content);
+                    var result = await client.PostAsync("api/HGS/Post", content);
                     if (result.IsSuccessStatusCode)
                         return RedirectToAction("Index");
 
@@ -190,7 +190,7 @@ namespace HouseholdBank.Controllers
 
                     int secilenHGSID = Convert.ToInt32(collection.Get("secilenHGSID"));
 
-                    using (var resultt = await client.GetAsync("api/HGS/" + secilenHGSID))
+                    using (var resultt = await client.GetAsync("api/HGS/Get/" + secilenHGSID))
                     {
                         if (resultt.IsSuccessStatusCode)
                         {
@@ -215,7 +215,7 @@ namespace HouseholdBank.Controllers
 
                     var serializedProduct = JsonConvert.SerializeObject(hgs);
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
-                    var result = await client.PutAsync("api/HGS/" + secilenHGSID, content);
+                    var result = await client.PutAsync("api/HGS/Put/" + secilenHGSID, content);
                     if (result.IsSuccessStatusCode)
                         return RedirectToAction("Index");
 
@@ -270,7 +270,7 @@ namespace HouseholdBank.Controllers
 
                     int secilenHGSID = Convert.ToInt32(collection.Get("secilenHGSID"));
 
-                    using (var resultt = await client.GetAsync("api/HGS/" + secilenHGSID))
+                    using (var resultt = await client.GetAsync("api/HGS/Get/" + secilenHGSID))
                     {
                         if (resultt.IsSuccessStatusCode)
                         {
@@ -300,7 +300,7 @@ namespace HouseholdBank.Controllers
 
                     var serializedProduct = JsonConvert.SerializeObject(hgs);
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
-                    var result = await client.PutAsync("api/HGS/" + secilenHGSID, content);
+                    var result = await client.PutAsync("api/HGS/Put/" + secilenHGSID, content);
                     if (result.IsSuccessStatusCode)
                         return RedirectToAction("Index");
 

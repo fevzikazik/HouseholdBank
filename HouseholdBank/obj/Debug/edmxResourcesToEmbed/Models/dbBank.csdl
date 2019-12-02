@@ -1,35 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Banka">
-    <Key>
-      <PropertyRef Name="bankaID" />
-    </Key>
-    <Property Name="bankaID" Type="Int32" Nullable="false" />
-    <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="slogan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Musteri">
-    <Key>
-      <PropertyRef Name="tcKimlikNo" />
-    </Key>
-    <Property Name="tcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="tamAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
-    <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="hesapNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Banka" EntityType="Self.Banka" />
-    <EntitySet Name="Musteri" EntityType="Self.Musteri" />
     <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
-    <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
     <EntitySet Name="Islem" EntityType="dbBankModel.Islem" />
+    <EntitySet Name="Musteri" EntityType="dbBankModel.Musteri" />
+    <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
   </EntityContainer>
   <EntityType Name="Hesap">
     <Key>
@@ -43,16 +18,6 @@
     <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
     <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
   </EntityType>
-  <EntityType Name="HGS">
-    <Key>
-      <PropertyRef Name="hgsID" />
-    </Key>
-    <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="aktifmi" Type="Boolean" />
-    <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Islem">
     <Key>
       <PropertyRef Name="islemID" />
@@ -64,5 +29,28 @@
     <Property Name="tarih" Type="DateTime" Precision="3" />
     <Property Name="islemTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="platform" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="tcKimlikNo" />
+    </Key>
+    <Property Name="tcKimlikNo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="tamAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="hesapNo" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HGS">
+    <Key>
+      <PropertyRef Name="hgsID" />
+    </Key>
+    <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="aktifmi" Type="Boolean" />
+    <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -1,32 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="dbBankModelStoreContainer" CdmEntityContainer="dbBankEntities">
-    <EntitySetMapping Name="Banka">
-      <EntityTypeMapping TypeName="dbBankModel.Banka">
-        <MappingFragment StoreEntitySet="Banka">
-          <ScalarProperty Name="bankaID" ColumnName="bankaID" />
-          <ScalarProperty Name="adi" ColumnName="adi" />
-          <ScalarProperty Name="slogan" ColumnName="slogan" />
-          <ScalarProperty Name="adres" ColumnName="adres" />
-          <ScalarProperty Name="tel" ColumnName="tel" />
-          <ScalarProperty Name="il" ColumnName="il" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Musteri">
-      <EntityTypeMapping TypeName="dbBankModel.Musteri">
-        <MappingFragment StoreEntitySet="Musteri">
-          <ScalarProperty Name="tcKimlikNo" ColumnName="tcKimlikNo" />
-          <ScalarProperty Name="tamAdi" ColumnName="tamAdi" />
-          <ScalarProperty Name="ePosta" ColumnName="ePosta" />
-          <ScalarProperty Name="sifre" ColumnName="sifre" />
-          <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
-          <ScalarProperty Name="telefon" ColumnName="telefon" />
-          <ScalarProperty Name="adres" ColumnName="adres" />
-          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Hesap">
       <EntityTypeMapping TypeName="dbBankModel.Hesap">
         <MappingFragment StoreEntitySet="Hesap">
@@ -40,17 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HGS">
-      <EntityTypeMapping TypeName="dbBankModel.HGS">
-        <MappingFragment StoreEntitySet="HGS">
-          <ScalarProperty Name="plaka" ColumnName="plaka" />
-          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
-          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
-          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
-          <ScalarProperty Name="hgsID" ColumnName="hgsID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Islem">
       <EntityTypeMapping TypeName="dbBankModel.Islem">
         <MappingFragment StoreEntitySet="Islem">
@@ -61,6 +24,31 @@
           <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
           <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
           <ScalarProperty Name="islemID" ColumnName="islemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="dbBankModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+          <ScalarProperty Name="tamAdi" ColumnName="tamAdi" />
+          <ScalarProperty Name="tcKimlikNo" ColumnName="tcKimlikNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HGS">
+      <EntityTypeMapping TypeName="dbBankModel.HGS">
+        <MappingFragment StoreEntitySet="HGS">
+          <ScalarProperty Name="plaka" ColumnName="plaka" />
+          <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+          <ScalarProperty Name="hgsID" ColumnName="hgsID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

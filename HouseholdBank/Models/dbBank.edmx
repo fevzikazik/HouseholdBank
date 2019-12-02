@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="dbBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Banka">
-          <Key>
-            <PropertyRef Name="bankaID" />
-          </Key>
-          <Property Name="bankaID" Type="int" Nullable="false" />
-          <Property Name="adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="slogan" Type="nvarchar" MaxLength="150" />
-          <Property Name="adres" Type="nvarchar" MaxLength="150" />
-          <Property Name="tel" Type="nvarchar" MaxLength="20" />
-          <Property Name="il" Type="nvarchar" MaxLength="20" />
-        </EntityType>
         <EntityType Name="Hesap">
           <Key>
             <PropertyRef Name="hesapID" />
@@ -64,7 +53,6 @@
           <Property Name="hesapNo" Type="nvarchar" MaxLength="9" Nullable="false" />
         </EntityType>
         <EntityContainer Name="dbBankModelStoreContainer">
-          <EntitySet Name="Banka" EntityType="Self.Banka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HGS" EntityType="Self.HGS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Islem" EntityType="Self.Islem" Schema="dbo" store:Type="Tables" />
@@ -74,36 +62,11 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Banka">
-          <Key>
-            <PropertyRef Name="bankaID" />
-          </Key>
-          <Property Name="bankaID" Type="Int32" Nullable="false" />
-          <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="slogan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Musteri">
-          <Key>
-            <PropertyRef Name="tcKimlikNo" />
-          </Key>
-          <Property Name="tcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tamAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
-          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="hesapNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="dbBankEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Banka" EntityType="Self.Banka" />
-          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
           <EntitySet Name="Hesap" EntityType="dbBankModel.Hesap" />
-          <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
           <EntitySet Name="Islem" EntityType="dbBankModel.Islem" />
+          <EntitySet Name="Musteri" EntityType="dbBankModel.Musteri" />
+          <EntitySet Name="HGS" EntityType="dbBankModel.HGS" />
         </EntityContainer>
         <EntityType Name="Hesap">
           <Key>
@@ -117,16 +80,6 @@
           <Property Name="kapanisTarihi" Type="DateTime" Precision="3" />
           <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
         </EntityType>
-        <EntityType Name="HGS">
-          <Key>
-            <PropertyRef Name="hgsID" />
-          </Key>
-          <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="aktifmi" Type="Boolean" />
-          <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Islem">
           <Key>
             <PropertyRef Name="islemID" />
@@ -139,38 +92,35 @@
           <Property Name="islemTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="platform" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="tcKimlikNo" />
+          </Key>
+          <Property Name="tcKimlikNo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="tamAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="hesapNo" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HGS">
+          <Key>
+            <PropertyRef Name="hgsID" />
+          </Key>
+          <Property Name="hgsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musTCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="bakiye" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="aktifmi" Type="Boolean" />
+          <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbBankModelStoreContainer" CdmEntityContainer="dbBankEntities">
-          <EntitySetMapping Name="Banka">
-            <EntityTypeMapping TypeName="dbBankModel.Banka">
-              <MappingFragment StoreEntitySet="Banka">
-                <ScalarProperty Name="bankaID" ColumnName="bankaID" />
-                <ScalarProperty Name="adi" ColumnName="adi" />
-                <ScalarProperty Name="slogan" ColumnName="slogan" />
-                <ScalarProperty Name="adres" ColumnName="adres" />
-                <ScalarProperty Name="tel" ColumnName="tel" />
-                <ScalarProperty Name="il" ColumnName="il" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Musteri">
-            <EntityTypeMapping TypeName="dbBankModel.Musteri">
-              <MappingFragment StoreEntitySet="Musteri">
-                <ScalarProperty Name="tcKimlikNo" ColumnName="tcKimlikNo" />
-                <ScalarProperty Name="tamAdi" ColumnName="tamAdi" />
-                <ScalarProperty Name="ePosta" ColumnName="ePosta" />
-                <ScalarProperty Name="sifre" ColumnName="sifre" />
-                <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
-                <ScalarProperty Name="telefon" ColumnName="telefon" />
-                <ScalarProperty Name="adres" ColumnName="adres" />
-                <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Hesap">
             <EntityTypeMapping TypeName="dbBankModel.Hesap">
               <MappingFragment StoreEntitySet="Hesap">
@@ -184,17 +134,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HGS">
-            <EntityTypeMapping TypeName="dbBankModel.HGS">
-              <MappingFragment StoreEntitySet="HGS">
-                <ScalarProperty Name="plaka" ColumnName="plaka" />
-                <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
-                <ScalarProperty Name="bakiye" ColumnName="bakiye" />
-                <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
-                <ScalarProperty Name="hgsID" ColumnName="hgsID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Islem">
             <EntityTypeMapping TypeName="dbBankModel.Islem">
               <MappingFragment StoreEntitySet="Islem">
@@ -205,6 +144,31 @@
                 <ScalarProperty Name="hesapEkNo" ColumnName="hesapEkNo" />
                 <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
                 <ScalarProperty Name="islemID" ColumnName="islemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="dbBankModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+                <ScalarProperty Name="tamAdi" ColumnName="tamAdi" />
+                <ScalarProperty Name="tcKimlikNo" ColumnName="tcKimlikNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HGS">
+            <EntityTypeMapping TypeName="dbBankModel.HGS">
+              <MappingFragment StoreEntitySet="HGS">
+                <ScalarProperty Name="plaka" ColumnName="plaka" />
+                <ScalarProperty Name="aktifmi" ColumnName="aktifmi" />
+                <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+                <ScalarProperty Name="musTCKN" ColumnName="musTCKN" />
+                <ScalarProperty Name="hgsID" ColumnName="hgsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
